@@ -18,14 +18,14 @@ tokens = (
     'MODULO',       #done
     'INCREMENT',    #done
     'DECREMENT',    #done
-    'LANGLE',       
-    'RANGLE',
+    'LANGLE',       #done
+    'RANGLE',       #done
     'LANGLEEQUAL',  #done
     'RANGLEEQUAL',  #done
     'NOTEQUAL',     #done
     'ISEQUAL',      #done
     'NOT',
-    'AND',
+    'AND',          
     'OR',
 
 )
@@ -44,9 +44,17 @@ def p_exp_binop(p):
         | exp RANGLEEQUAL exp
         | exp ISEQUAL exp
         | exp NOTEQUAL exp
+        | exp LANGLE exp
+        | exp RANGLE exp
+        | exp AND exp
+        | exp OR exp
         '''
-
     p[0] = ("binop", p[1], p[2], p[3])
+
+
+def p_exp_NOT(p):
+    'exp : NOT exp'
+    p[0] = ("NOT", p[1])
 
 
 def p_exp_int(p):
@@ -86,8 +94,16 @@ def eval_exp(tree):
             return eval_exp(left_exp) == eval_exp(right_exp)
         elif binop == '!=':
             return eval_exp(left_exp) != eval_exp(right_exp)
-        
-        
+        elif binop == '<':
+            return eval_exp(left_exp) < eval_exp(right_exp)
+        elif binop == '>':
+            return eval_exp(left_exp) > eval_exp(right_exp)
+        elif binop == '&&':
+            return eval_exp(left_exp) and eval_exp(right_exp)
+        elif binop == '||':
+            return eval_exp(left_exp) or eval_exp(right_exp)
+    elif nodetype == 'NOT':
+        return not(eval_exp(tree[1]))
 
 mylex = lex.lex(module=my_tokens)
 parser = yacc.yacc()
