@@ -7,7 +7,7 @@ tokens = (
     'INT',
     'DOUBLE',
     'CHAR',
-    # 'STRING',
+    'STRING',
     # 'BOOL',
     'PLUS',         #done
     'MINUS',        #done
@@ -17,17 +17,30 @@ tokens = (
     'MODULO',       #done
     'INCREMENT',    #done
     'DECREMENT',    #done
-    'LANGLE',
-    'RANGLE',
-    'LANGLEEQUAL',
-    'RANGLEEQUAL',
+    'LT',
+    'GT',
+    'LE',
+    'GE',
     'NOTEQUAL',
     'ISEQUAL',
     'NOT',
     'AND',
     'OR',
-
+    'LPARAN',
+    'RPARAN'
 )
+
+def t_error(t):
+    print('Unrecognized token "%s"' % t.value)
+    t.lexer.skip(1) 
+
+def t_LPARAN(t):
+    r'\('
+    return t
+
+def t_RPARAN(t):
+    r'\)'
+    return t
 
 def t_DOUBLE(t):
     r'[0-9]+[.][0-9]+'
@@ -38,6 +51,11 @@ def t_INT(t):
     r'[0-9]+'
     t.value = int(t.value)
     return t
+
+def t_STRING(t):
+        r'"[^"]*"'
+        t.value = t.value[1:-1]
+        return t
 
 def t_CHAR(t):
     r'[a-zA-Z]'
@@ -75,19 +93,19 @@ def t_MODULO(t):
     r'\%'
     return t
 
-def t_LANGLEEQUAL(t):
+def t_LE(t):
     r'<='
     return t
 
-def t_RANGLEEQUAL(t):
+def t_GE(t):
     r'>='
     return t
 
-def t_LANGLE(t):
+def t_LT(t):
     r'<'
     return t
 
-def t_RANGLE(t):
+def t_GT(t):
     r'>'
     return t
 
