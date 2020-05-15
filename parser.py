@@ -19,7 +19,10 @@ tokens = (
     'CHAR',
     'STRING',
     'IDENTIFIER',
+    'COMMA',
     # 'BOOL',
+    # 'TRUE',
+    # 'FALSE',
     'PLUS',         #done
     'MINUS',        #done
     'DIVIDE',       #done
@@ -54,8 +57,23 @@ def p_stmt_assign(p):
     p[0] = ("assign", p[1], p[3])
 
 def p_stmt_print(p):
-    'stmt : PRINT LPARAN exp RPARAN'
-    p[0] = ("print", p[3])
+    'stmt : PRINT LPARAN exps RPARAN'
+    p[0] = ("printexps",p[3])
+
+def p_stmt_many_exps(p):
+    '''exps : exp
+            | exp COMMA exps
+    '''
+    if len(p) == 2: 
+        p[0] = [p[1]]
+    else: 
+        p[0] = [p[1]] + p[3]
+    
+    
+
+# def p_stmt_exps(p):
+#     'exps : exp'
+#     p[0] = ("printexp", p[1])
 
 def p_stmt_exp(p):
     'stmt : exp'
@@ -87,6 +105,12 @@ def p_exp_paran(p):
 def p_exp_not(p):
     'exp : NOT exp'
     p[0] = ("NOT", p[2])
+
+# def p_exp_bool(p):
+#     ''' exp : TRUE
+#             | FALSE
+#     '''
+#     p[0] = ("bool", p[1])
 
 def p_exp_int(p):
     'exp : INT'

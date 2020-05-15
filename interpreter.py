@@ -53,10 +53,14 @@ def evaluate(tree, store):
     elif nodetype == 'NOT':
         return not(evaluate(tree[1], store))
     elif nodetype == 'assign':
+        storage[tree[1]] = tree[2]
         return storage
-    elif nodetype == 'print':
-        expression = evaluate(tree[1], store)
-        return expression
+    elif nodetype == 'printexps':
+        exp_list = tree[1]
+        for exp in exp_list:
+            print(evaluate(exp,storage),end=" ")
+        print()
+        
 
 mylex = lex.lex(module=lexer)
 parser = yacc.yacc()
@@ -67,5 +71,8 @@ while True:
     except EOFError:
         break
     ptree = parser.parse(s)
-    evaluation = evaluate(ptree, storage)
-    print(evaluation)
+    if ptree[0] == 'printexps':
+        evaluate(ptree, storage)
+    else:
+        evaluation = evaluate(ptree, storage)
+        print(evaluation)

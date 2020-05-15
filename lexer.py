@@ -9,7 +9,10 @@ tokens = (
     'CHAR',
     'STRING',
     'IDENTIFIER',
+    'COMMA',
     # 'BOOL',
+    # 'TRUE',
+    # 'FALSE',
     'PLUS',         #done
     'MINUS',        #done
     'DIVIDE',       #done
@@ -37,6 +40,14 @@ def t_error(t):
     print('Unrecognized token "%s"' % t.value)
     t.lexer.skip(1) 
 
+# def t_BOOL(t):
+#     r'TRUE|FALSE'
+#     return t
+
+def t_COMMA(t):
+    r'\,'
+    return t
+    
 def t_PRINT(t):
     r'PRINT'
     return t
