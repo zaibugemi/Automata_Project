@@ -39,7 +39,8 @@ tokens = (
     'AND',          #done
     'OR',            #done
     'LPARAN',
-    'RPARAN'
+    'RPARAN',
+    'PRINT',
 )
 
 
@@ -51,6 +52,10 @@ tokens = (
 def p_stmt_assign(p):
     'stmt : IDENTIFIER EQUAL exp'
     p[0] = ("assign", p[1], p[3])
+
+def p_stmt_print(p):
+    'stmt : PRINT LPARAN exp RPARAN'
+    p[0] = ("print", p[3])
 
 def p_stmt_exp(p):
     'stmt : exp'
@@ -102,7 +107,6 @@ def p_exp_string(p):
 def p_exp_identifier(p):
     'exp : IDENTIFIER'
     p[0] = ("identifier", p[1])
-
 
 # def p_stmt_exp(p):
 #     's : exp'

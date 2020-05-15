@@ -29,17 +29,22 @@ tokens = (
     'AND',
     'OR',
     'LPARAN',
-    'RPARAN'
+    'RPARAN',
+    'PRINT',
 )
 
 def t_error(t):
     print('Unrecognized token "%s"' % t.value)
     t.lexer.skip(1) 
 
+def t_PRINT(t):
+    r'PRINT'
+    return t
+
 def t_IDENTIFIER(t):
     r'[a-zA-Z]+(:?_[a-zA-Z])*'
     return t
-    
+
 def t_ISEQUAL(t):
     r'\=\='
     return t

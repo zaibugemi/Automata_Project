@@ -53,8 +53,10 @@ def evaluate(tree, store):
     elif nodetype == 'NOT':
         return not(evaluate(tree[1], store))
     elif nodetype == 'assign':
-        storage[tree[1]] = evaluate(tree[2], store)
         return storage
+    elif nodetype == 'print':
+        expression = evaluate(tree[1], store)
+        return expression
 
 mylex = lex.lex(module=lexer)
 parser = yacc.yacc()
