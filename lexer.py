@@ -8,6 +8,7 @@ tokens = (
     'DOUBLE',
     'CHAR',
     'STRING',
+    'IDENTIFIER',
     # 'BOOL',
     'PLUS',         #done
     'MINUS',        #done
@@ -21,6 +22,7 @@ tokens = (
     'GT',
     'LE',
     'GE',
+    'EQUAL',
     'NOTEQUAL',
     'ISEQUAL',
     'NOT',
@@ -33,6 +35,18 @@ tokens = (
 def t_error(t):
     print('Unrecognized token "%s"' % t.value)
     t.lexer.skip(1) 
+
+def t_IDENTIFIER(t):
+    r'[a-zA-Z]+(:?_[a-zA-Z])*'
+    return t
+    
+def t_ISEQUAL(t):
+    r'\=\='
+    return t
+
+def t_EQUAL(t):
+    r'\='
+    return t
 
 def t_LPARAN(t):
     r'\('
@@ -52,14 +66,17 @@ def t_INT(t):
     t.value = int(t.value)
     return t
 
-def t_STRING(t):
-        r'"[^"]*"'
-        t.value = t.value[1:-1]
-        return t
-
 def t_CHAR(t):
-    r'[a-zA-Z]'
+    r"'[a-zA-Z]'"
+    t.value = t.value[1:-1]
     return t
+
+    
+def t_STRING(t):
+    r'"[^"]*"'
+    t.value = t.value[1:-1]
+    return t
+
 
 def t_INCREMENT(t):
     r'\+\+'
@@ -94,40 +111,37 @@ def t_MODULO(t):
     return t
 
 def t_LE(t):
-    r'<='
+    r'\<\='
     return t
 
 def t_GE(t):
-    r'>='
+    r'\>\='
     return t
 
 def t_LT(t):
-    r'<'
+    r'\<'
     return t
 
 def t_GT(t):
-    r'>'
+    r'\>'
     return t
 
 def t_NOTEQUAL(t):
-    r'!='
+    r'\!\='
     return t
 
 def t_NOT(t):
-    r'!'
+    r'\!'
     return t
 
 def t_AND(t):
-    r'&&'
+    r'\&\&'
     return t
 
 def t_OR(t):
     r'\|\|'
     return t
 
-def t_ISEQUAL(t):
-    r'=='
-    return t
 
 def t_newline(t):
     r'\n+'

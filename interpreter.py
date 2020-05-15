@@ -4,44 +4,57 @@ import ply.lex as lex
 import ply.yacc as yacc
 import re
 
-def eval_exp(tree):
+
+storage = {}
+
+def evaluate(tree, store):
+    global storage
     nodetype = tree[0]
     if nodetype == 'int':
         return int(tree[1])
+    elif nodetype == 'identifier':
+        return tree[1]
     elif nodetype == 'double':
         return float(tree[1])
+    elif nodetype == 'char':
+        return tree[1]
+    elif nodetype == 'string':
+        return tree[1]
     elif nodetype == 'binop':
         binop, left_exp, right_exp = tree[2], tree[1], tree[3]
         if binop == '+':
-            return eval_exp(left_exp) + eval_exp(right_exp)
+            return evaluate(left_exp, store) + evaluate(right_exp, store)
         elif binop == '-':
-            return eval_exp(left_exp) - eval_exp(right_exp)
+            return evaluate(left_exp, store) - evaluate(right_exp, store)
         elif binop == '/':
-            return eval_exp(left_exp) / eval_exp(right_exp)
+            return evaluate(left_exp, store) / evaluate(right_exp, store)
         elif binop == '*':
-            return eval_exp(left_exp) * eval_exp(right_exp)
+            return evaluate(left_exp, store) * evaluate(right_exp, store)
         elif binop == '^':
-            return eval_exp(left_exp) ** eval_exp(right_exp)
+            return evaluate(left_exp, store) ** evaluate(right_exp, store)
         elif binop == '%':
-            return eval_exp(left_exp) % eval_exp(right_exp)
+            return evaluate(left_exp, store) % evaluate(right_exp, store)
         elif binop == '<=':
-            return eval_exp(left_exp) <= eval_exp(right_exp)
+            return evaluate(left_exp, store) <= evaluate(right_exp, store)
         elif binop == '>=':
-            return eval_exp(left_exp) >= eval_exp(right_exp)
+            return evaluate(left_exp, store) >= evaluate(right_exp, store)
         elif binop == '==':
-            return eval_exp(left_exp) == eval_exp(right_exp)
+            return evaluate(left_exp, store) == evaluate(right_exp, store)
         elif binop == '!=':
-            return eval_exp(left_exp) != eval_exp(right_exp)
+            return evaluate(left_exp, store) != evaluate(right_exp, store)
         elif binop == '<':
-            return eval_exp(left_exp) < eval_exp(right_exp)
+            return evaluate(left_exp, store) < evaluate(right_exp, store)
         elif binop == '>':
-            return eval_exp(left_exp) > eval_exp(right_exp)
+            return evaluate(left_exp, store) > evaluate(right_exp, store)
         elif binop == '&&':
-            return eval_exp(left_exp) and eval_exp(right_exp)
+            return evaluate(left_exp, store) and evaluate(right_exp, store)
         elif binop == '||':
-            return eval_exp(left_exp) or eval_exp(right_exp)
+            return evaluate(left_exp, store) or evaluate(right_exp, store)
     elif nodetype == 'NOT':
-        return not(eval_exp(tree[1]))
+        return not(evaluate(tree[1], store))
+    elif nodetype == 'assign':
+        storage[tree[1]] = evaluate(tree[2], store)
+        return storage
 
 mylex = lex.lex(module=lexer)
 parser = yacc.yacc()
@@ -52,6 +65,5 @@ while True:
     except EOFError:
         break
     ptree = parser.parse(s)
-    print(ptree)
-    evaluation = eval_exp(ptree)
+    evaluation = evaluate(ptree, storage)
     print(evaluation)
