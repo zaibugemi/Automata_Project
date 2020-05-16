@@ -20,6 +20,7 @@ tokens = (
     'STRING',
     'IDENTIFIER',
     'COMMA',
+    'SEMICOLON',
     # 'BOOL',
     # 'TRUE',
     # 'FALSE',
@@ -51,10 +52,28 @@ tokens = (
 
 # def p_exp_empty(p):
 #     p[0] = ''
+def p_stmt_multiline(p):
+    'line : stmts'
+    p[0] = ("statements", p[1])
+
+def p_stmt_end(p):
+    '''stmts : stmt
+             | stmt SEMICOLON stmts
+    '''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = [p[1]] + p[3]
+
+def p_stmt_exp(p):
+    'stmt : exp'
+    p[0] = p[1]
 
 def p_stmt_assign(p):
     'stmt : IDENTIFIER EQUAL exp'
     p[0] = ("assign", p[1], p[3])
+
+
 
 def p_stmt_print(p):
     'stmt : PRINT LPARAN exps RPARAN'
@@ -69,15 +88,11 @@ def p_stmt_many_exps(p):
     else: 
         p[0] = [p[1]] + p[3]
     
-    
 
 # def p_stmt_exps(p):
 #     'exps : exp'
 #     p[0] = ("printexp", p[1])
 
-def p_stmt_exp(p):
-    'stmt : exp'
-    p[0] = p[1]
 
 def p_exp_binop(p):
     '''
@@ -143,3 +158,65 @@ def p_error(p):
         token = f"{p.type}({p.value}) on line {p.lineno}"
 
     print(f"Syntax error: Unexpected {token}")
+
+storage = {}
+
+def evaluate(tree, store):
+    global storage
+    nodetype = tree[0]
+    if nodetype == 'int':
+        return int(tree[1])
+    elif nodetype == 'identifier':
+        return tree[1]
+    elif nodetype == 'double':
+        return float(tree[1])
+    elif nodetype == 'char':
+        return tree[1]
+    elif nodetype == 'string':
+        return tree[1]
+    elif nodetype == 'binop':
+        binop, left_exp, right_exp = tree[2], tree[1], tree[3]
+        if binop == '+':
+            return evaluate(left_exp, store) + evaluate(right_exp, store)
+        elif binop == '-':
+            return evaluate(left_exp, store) - evaluate(right_exp, store)
+        elif binop == '/':
+            return evaluate(left_exp, store) / evaluate(right_exp, store)
+        elif binop == '*':
+            return evaluate(left_exp, store) * evaluate(right_exp, store)
+        elif binop == '^':
+            return evaluate(left_exp, store) ** evaluate(right_exp, store)
+        elif binop == '%':
+            return evaluate(left_exp, store) % evaluate(right_exp, store)
+        elif binop == '<=':
+            return evaluate(left_exp, store) <= evaluate(right_exp, store)
+        elif binop == '>=':
+            return evaluate(left_exp, store) >= evaluate(right_exp, store)
+        elif binop == '==':
+            return evaluate(left_exp, store) == evaluate(right_exp, store)
+        elif binop == '!=':
+            return evaluate(left_exp, store) != evaluate(right_exp, store)
+        elif binop == '<':
+            return evaluate(left_exp, store) < evaluate(right_exp, store)
+        elif binop == '>':
+            return evaluate(left_exp, store) > evaluate(right_exp, store)
+        elif binop == '&&':
+            return evaluate(left_exp, store) and evaluate(right_exp, store)
+        elif binop == '||':
+            return evaluate(left_exp, store) or evaluate(right_exp, store)
+    elif nodetype == 'NOT':
+        return not(evaluate(tree[1], store))
+    elif nodetype == 'assign':
+        storage[tree[1]] = tree[2]
+    elif nodetype == 'printexps':
+        exp_list = tree[1]
+        for exp in exp_list:
+            print(evaluate(exp,storage),end=" ")
+        print()
+    elif nodetype == 'statements':
+        stmts_list = tree[1]
+        for stmt in stmts_list:
+            result = evaluate(stmt, storage)
+            if result is not None:
+                print(result)
+        

@@ -10,6 +10,7 @@ tokens = (
     'STRING',
     'IDENTIFIER',
     'COMMA',
+    'SEMICOLON',
     # 'BOOL',
     # 'TRUE',
     # 'FALSE',
@@ -44,10 +45,14 @@ def t_error(t):
 #     r'TRUE|FALSE'
 #     return t
 
+def t_SEMICOLON(t):
+    r'\;'
+    return t
+
 def t_COMMA(t):
     r'\,'
     return t
-    
+
 def t_PRINT(t):
     r'PRINT'
     return t
