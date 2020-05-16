@@ -68,6 +68,10 @@ def p_stmt_assign(p):
     'stmt : VARTYPE IDENTIFIER EQUAL exp'
     p[0] = ("assign", p[1],p[2],p[4])
 
+def p_stmt_change(p):
+    'stmt : IDENTIFIER EQUAL exp'
+    p[0] = ("change", p[1],p[3])
+
 def p_stmt_print(p):
     'stmt : PRINT LPARAN exps RPARAN'
     p[0] = ("printexps",p[3])
@@ -147,7 +151,11 @@ def evaluate(tree, store):
     if nodetype == 'int':
         return int(tree[1])
     elif nodetype == 'identifier':
-        return tree[1]
+        var = tree[1]
+        if var in storage:
+            return storage[var][1]
+        else:
+            return var
     elif nodetype == 'double':
         return float(tree[1])
     elif nodetype == 'char':
@@ -189,36 +197,41 @@ def evaluate(tree, store):
     elif nodetype == 'NOT':
         return not(evaluate(tree[1], store))
     elif nodetype == 'assign':
-        var_type = tree[1]
         var_name = tree[2]
-        var_value = tree[3]
-        if var_type == 'STRING':
-            if type(var_value[1]) is str:
-                storage[var_name] = var_value
-            else:
-                print('INVALID ASSIGNMENT STATEMENT')
-        elif var_type == 'INT':
-            if type(var_value[1]) is int:
-                storage[var_name] = var_value
-            else:
-                print('INVALID ASSIGNMENT STATEMENT')
-        elif var_type == 'CHAR':
-            if type(var_value[1]) is str and len(var_name) == 1:
-                storage[var_name] = var_value
-            else:
-                print('INVALID ASSIGNMENT STATEMENT')
-        elif var_type == 'DOUBLE':
-            if type(var_value[1]) is float:
-                storage[var_name] = var_value
-            else:
-                print('INVALID ASSIGNMENT STATEMENT')
-        elif var_type == 'BOOL':
-            if var_value[1] == 'TRUE':
-                storage[var_name] = True
-            elif var_value[1] == 'FALSE':
-                storage[var_name] = False
-            else:
-                print('INVALID ASSIGNMENT STATEMENT')
+        if var_name in storage:
+            print("RedeclarationError")
+        else:
+            var_type = tree[1]
+            var_value = evaluate(tree[3], store)
+            if var_type == 'STRING':
+                if type(var_value) is str:
+                    storage[var_name] = [str,var_value]
+                else:
+                    print('INVALID ASSIGNMENT STATEMENT')
+            elif var_type == 'INT':
+                if type(var_value) is int:
+                    # print(var_value)
+                    storage[var_name] = [int,var_value]
+                else:
+                    print('INVALID ASSIGNMENT STATEMENT')
+            elif var_type == 'CHAR':
+                if type(var_value) is str and len(var_name) == 1:
+                    storage[var_name] = [str,var_value]
+                else:
+                    print('INVALID ASSIGNMENT STATEMENT')
+            elif var_type == 'DOUBLE':
+                
+                if type(var_value) is float:
+                    storage[var_name] = [float,var_value]
+                else:
+                    print('INVALID ASSIGNMENT STATEMENT')
+            elif var_type == 'BOOL':
+                if var_value == 'TRUE':
+                    storage[var_name] = [bool,True]
+                elif var_value == 'FALSE':
+                    storage[var_name] = [bool,False]
+                else:
+                    print('INVALID ASSIGNMENT STATEMENT')
     elif nodetype == 'printexps':
         exp_list = tree[1]
         for exp in exp_list:
@@ -230,4 +243,15 @@ def evaluate(tree, store):
             result = evaluate(stmt, storage)
             if result is not None:
                 print(result)
-        
+    elif nodetype == 'change':
+        var_name = tree[1]
+        var_val = tree[2]
+        if var_name not in storage:
+            print("variable does not exixt")
+        else:
+            var_type = type(tree[2][1])
+            if storage[var_name][0] == var_type:
+                storage[var_name][1] = var_val[1]
+            else:
+                print(var_val)
+                print("types do not match")

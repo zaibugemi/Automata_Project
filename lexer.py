@@ -61,7 +61,7 @@ def t_PRINT(t):
     return t
 
 def t_IDENTIFIER(t):
-    r'[a-zA-Z]+(:?_[a-zA-Z])*'
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
     return t
 
 def t_ISEQUAL(t):
@@ -81,12 +81,12 @@ def t_RPARAN(t):
     return t
 
 def t_DOUBLE(t):
-    r'[0-9]+[.][0-9]+'
+    r'-?[0-9]+[.][0-9]+'
     t.value = float(t.value)
     return t
 
 def t_INT(t):
-    r'[0-9]+'
+    r'-?[0-9]+'
     t.value = int(t.value)
     return t
 
