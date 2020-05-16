@@ -14,16 +14,15 @@ precedence = (
 )
 
 tokens = (
+    'VARTYPE',
     'INT',          #done
     'DOUBLE',       #done
     'CHAR',
     'STRING',
+    'BOOL',
     'IDENTIFIER',
     'COMMA',
     'SEMICOLON',
-    # 'BOOL',
-    # 'TRUE',
-    # 'FALSE',
     'PLUS',         #done
     'MINUS',        #done
     'DIVIDE',       #done
@@ -48,10 +47,6 @@ tokens = (
 )
 
 
-
-
-# def p_exp_empty(p):
-#     p[0] = ''
 def p_stmt_multiline(p):
     'line : stmts'
     p[0] = ("statements", p[1])
@@ -70,10 +65,8 @@ def p_stmt_exp(p):
     p[0] = p[1]
 
 def p_stmt_assign(p):
-    'stmt : IDENTIFIER EQUAL exp'
-    p[0] = ("assign", p[1], p[3])
-
-
+    'stmt : VARTYPE IDENTIFIER EQUAL exp'
+    p[0] = ("assign", p[1],p[2],p[4])
 
 def p_stmt_print(p):
     'stmt : PRINT LPARAN exps RPARAN'
@@ -87,12 +80,6 @@ def p_stmt_many_exps(p):
         p[0] = [p[1]]
     else: 
         p[0] = [p[1]] + p[3]
-    
-
-# def p_stmt_exps(p):
-#     'exps : exp'
-#     p[0] = ("printexp", p[1])
-
 
 def p_exp_binop(p):
     '''
@@ -112,7 +99,6 @@ def p_exp_binop(p):
         | exp OR exp'''
     p[0] = ("binop", p[1], p[2], p[3])
 
-
 def p_exp_paran(p):
     'exp : LPARAN exp RPARAN'
     p[0] = p[2]
@@ -120,12 +106,6 @@ def p_exp_paran(p):
 def p_exp_not(p):
     'exp : NOT exp'
     p[0] = ("NOT", p[2])
-
-# def p_exp_bool(p):
-#     ''' exp : TRUE
-#             | FALSE
-#     '''
-#     p[0] = ("bool", p[1])
 
 def p_exp_int(p):
     'exp : INT'
@@ -143,13 +123,13 @@ def p_exp_string(p):
     'exp : STRING'
     p[0] = ("string", p[1])
 
+def p_exp_bool(p):
+    'exp : BOOL'
+    p[0] = ("bool", p[1])
+
 def p_exp_identifier(p):
     'exp : IDENTIFIER'
     p[0] = ("identifier", p[1])
-
-# def p_stmt_exp(p):
-#     's : exp'
-#     p[0] = p[1]
 
 def p_error(p):
     if p == None:
@@ -173,6 +153,8 @@ def evaluate(tree, store):
     elif nodetype == 'char':
         return tree[1]
     elif nodetype == 'string':
+        return tree[1]
+    elif nodetype == 'bool':
         return tree[1]
     elif nodetype == 'binop':
         binop, left_exp, right_exp = tree[2], tree[1], tree[3]
@@ -207,7 +189,36 @@ def evaluate(tree, store):
     elif nodetype == 'NOT':
         return not(evaluate(tree[1], store))
     elif nodetype == 'assign':
-        storage[tree[1]] = tree[2]
+        var_type = tree[1]
+        var_name = tree[2]
+        var_value = tree[3]
+        if var_type == 'STRING':
+            if type(var_value[1]) is str:
+                storage[var_name] = var_value
+            else:
+                print('INVALID ASSIGNMENT STATEMENT')
+        elif var_type == 'INT':
+            if type(var_value[1]) is int:
+                storage[var_name] = var_value
+            else:
+                print('INVALID ASSIGNMENT STATEMENT')
+        elif var_type == 'CHAR':
+            if type(var_value[1]) is str and len(var_name) == 1:
+                storage[var_name] = var_value
+            else:
+                print('INVALID ASSIGNMENT STATEMENT')
+        elif var_type == 'DOUBLE':
+            if type(var_value[1]) is float:
+                storage[var_name] = var_value
+            else:
+                print('INVALID ASSIGNMENT STATEMENT')
+        elif var_type == 'BOOL':
+            if var_value[1] == 'TRUE':
+                storage[var_name] = True
+            elif var_value[1] == 'FALSE':
+                storage[var_name] = False
+            else:
+                print('INVALID ASSIGNMENT STATEMENT')
     elif nodetype == 'printexps':
         exp_list = tree[1]
         for exp in exp_list:

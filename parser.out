@@ -12,7 +12,7 @@ Rule 1     line -> stmts
 Rule 2     stmts -> stmt
 Rule 3     stmts -> stmt SEMICOLON stmts
 Rule 4     stmt -> exp
-Rule 5     stmt -> IDENTIFIER EQUAL exp
+Rule 5     stmt -> VARTYPE IDENTIFIER EQUAL exp
 Rule 6     stmt -> PRINT LPARAN exps RPARAN
 Rule 7     exps -> exp
 Rule 8     exps -> exp COMMA exps
@@ -36,11 +36,13 @@ Rule 25    exp -> INT
 Rule 26    exp -> DOUBLE
 Rule 27    exp -> CHAR
 Rule 28    exp -> STRING
-Rule 29    exp -> IDENTIFIER
+Rule 29    exp -> BOOL
+Rule 30    exp -> IDENTIFIER
 
 Terminals, with rules where they appear
 
 AND                  : 21
+BOOL                 : 29
 CHAR                 : 27
 COMMA                : 8
 DECREMENT            : 
@@ -49,7 +51,7 @@ DOUBLE               : 26
 EQUAL                : 5
 GE                   : 16
 GT                   : 20
-IDENTIFIER           : 5 29
+IDENTIFIER           : 5 30
 INCREMENT            : 
 INT                  : 25
 ISEQUAL              : 17
@@ -68,6 +70,7 @@ PRINT                : 6
 RPARAN               : 6 23
 SEMICOLON            : 3
 STRING               : 28
+VARTYPE              : 5
 error                : 
 
 Nonterminals, with rules where they appear
@@ -87,7 +90,7 @@ state 0
     (2) stmts -> . stmt
     (3) stmts -> . stmt SEMICOLON stmts
     (4) stmt -> . exp
-    (5) stmt -> . IDENTIFIER EQUAL exp
+    (5) stmt -> . VARTYPE IDENTIFIER EQUAL exp
     (6) stmt -> . PRINT LPARAN exps RPARAN
     (9) exp -> . exp PLUS exp
     (10) exp -> . exp MINUS exp
@@ -109,16 +112,19 @@ state 0
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    IDENTIFIER      shift and go to state 5
-    PRINT           shift and go to state 6
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
+    VARTYPE         shift and go to state 5
+    PRINT           shift and go to state 7
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
     line                           shift and go to state 1
     stmts                          shift and go to state 2
@@ -144,7 +150,7 @@ state 3
     (3) stmts -> stmt . SEMICOLON stmts
 
     $end            reduce using rule 2 (stmts -> stmt .)
-    SEMICOLON       shift and go to state 13
+    SEMICOLON       shift and go to state 15
 
 
 state 4
@@ -167,54 +173,61 @@ state 4
 
     SEMICOLON       reduce using rule 4 (stmt -> exp .)
     $end            reduce using rule 4 (stmt -> exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    MODULO          shift and go to state 18
-    POWER           shift and go to state 19
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    NOTEQUAL        shift and go to state 23
-    LT              shift and go to state 24
-    GT              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    MODULO          shift and go to state 20
+    POWER           shift and go to state 21
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    NOTEQUAL        shift and go to state 25
+    LT              shift and go to state 26
+    GT              shift and go to state 27
+    AND             shift and go to state 28
+    OR              shift and go to state 29
 
 
 state 5
 
-    (5) stmt -> IDENTIFIER . EQUAL exp
-    (29) exp -> IDENTIFIER .
+    (5) stmt -> VARTYPE . IDENTIFIER EQUAL exp
 
-    EQUAL           shift and go to state 28
-    PLUS            reduce using rule 29 (exp -> IDENTIFIER .)
-    MINUS           reduce using rule 29 (exp -> IDENTIFIER .)
-    MULTIPLY        reduce using rule 29 (exp -> IDENTIFIER .)
-    DIVIDE          reduce using rule 29 (exp -> IDENTIFIER .)
-    MODULO          reduce using rule 29 (exp -> IDENTIFIER .)
-    POWER           reduce using rule 29 (exp -> IDENTIFIER .)
-    LE              reduce using rule 29 (exp -> IDENTIFIER .)
-    GE              reduce using rule 29 (exp -> IDENTIFIER .)
-    ISEQUAL         reduce using rule 29 (exp -> IDENTIFIER .)
-    NOTEQUAL        reduce using rule 29 (exp -> IDENTIFIER .)
-    LT              reduce using rule 29 (exp -> IDENTIFIER .)
-    GT              reduce using rule 29 (exp -> IDENTIFIER .)
-    AND             reduce using rule 29 (exp -> IDENTIFIER .)
-    OR              reduce using rule 29 (exp -> IDENTIFIER .)
-    SEMICOLON       reduce using rule 29 (exp -> IDENTIFIER .)
-    $end            reduce using rule 29 (exp -> IDENTIFIER .)
+    IDENTIFIER      shift and go to state 30
 
 
 state 6
 
-    (6) stmt -> PRINT . LPARAN exps RPARAN
+    (30) exp -> IDENTIFIER .
 
-    LPARAN          shift and go to state 29
+    PLUS            reduce using rule 30 (exp -> IDENTIFIER .)
+    MINUS           reduce using rule 30 (exp -> IDENTIFIER .)
+    MULTIPLY        reduce using rule 30 (exp -> IDENTIFIER .)
+    DIVIDE          reduce using rule 30 (exp -> IDENTIFIER .)
+    MODULO          reduce using rule 30 (exp -> IDENTIFIER .)
+    POWER           reduce using rule 30 (exp -> IDENTIFIER .)
+    LE              reduce using rule 30 (exp -> IDENTIFIER .)
+    GE              reduce using rule 30 (exp -> IDENTIFIER .)
+    ISEQUAL         reduce using rule 30 (exp -> IDENTIFIER .)
+    NOTEQUAL        reduce using rule 30 (exp -> IDENTIFIER .)
+    LT              reduce using rule 30 (exp -> IDENTIFIER .)
+    GT              reduce using rule 30 (exp -> IDENTIFIER .)
+    AND             reduce using rule 30 (exp -> IDENTIFIER .)
+    OR              reduce using rule 30 (exp -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 30 (exp -> IDENTIFIER .)
+    $end            reduce using rule 30 (exp -> IDENTIFIER .)
+    RPARAN          reduce using rule 30 (exp -> IDENTIFIER .)
+    COMMA           reduce using rule 30 (exp -> IDENTIFIER .)
 
 
 state 7
+
+    (6) stmt -> PRINT . LPARAN exps RPARAN
+
+    LPARAN          shift and go to state 31
+
+
+state 8
 
     (23) exp -> LPARAN . exp RPARAN
     (9) exp -> . exp PLUS exp
@@ -237,19 +250,21 @@ state 7
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 30
+    exp                            shift and go to state 32
 
-state 8
+state 9
 
     (24) exp -> NOT . exp
     (9) exp -> . exp PLUS exp
@@ -272,19 +287,21 @@ state 8
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 32
+    exp                            shift and go to state 33
 
-state 9
+state 10
 
     (25) exp -> INT .
 
@@ -308,7 +325,7 @@ state 9
     COMMA           reduce using rule 25 (exp -> INT .)
 
 
-state 10
+state 11
 
     (26) exp -> DOUBLE .
 
@@ -332,7 +349,7 @@ state 10
     COMMA           reduce using rule 26 (exp -> DOUBLE .)
 
 
-state 11
+state 12
 
     (27) exp -> CHAR .
 
@@ -356,7 +373,7 @@ state 11
     COMMA           reduce using rule 27 (exp -> CHAR .)
 
 
-state 12
+state 13
 
     (28) exp -> STRING .
 
@@ -380,13 +397,37 @@ state 12
     COMMA           reduce using rule 28 (exp -> STRING .)
 
 
-state 13
+state 14
+
+    (29) exp -> BOOL .
+
+    PLUS            reduce using rule 29 (exp -> BOOL .)
+    MINUS           reduce using rule 29 (exp -> BOOL .)
+    MULTIPLY        reduce using rule 29 (exp -> BOOL .)
+    DIVIDE          reduce using rule 29 (exp -> BOOL .)
+    MODULO          reduce using rule 29 (exp -> BOOL .)
+    POWER           reduce using rule 29 (exp -> BOOL .)
+    LE              reduce using rule 29 (exp -> BOOL .)
+    GE              reduce using rule 29 (exp -> BOOL .)
+    ISEQUAL         reduce using rule 29 (exp -> BOOL .)
+    NOTEQUAL        reduce using rule 29 (exp -> BOOL .)
+    LT              reduce using rule 29 (exp -> BOOL .)
+    GT              reduce using rule 29 (exp -> BOOL .)
+    AND             reduce using rule 29 (exp -> BOOL .)
+    OR              reduce using rule 29 (exp -> BOOL .)
+    SEMICOLON       reduce using rule 29 (exp -> BOOL .)
+    $end            reduce using rule 29 (exp -> BOOL .)
+    RPARAN          reduce using rule 29 (exp -> BOOL .)
+    COMMA           reduce using rule 29 (exp -> BOOL .)
+
+
+state 15
 
     (3) stmts -> stmt SEMICOLON . stmts
     (2) stmts -> . stmt
     (3) stmts -> . stmt SEMICOLON stmts
     (4) stmt -> . exp
-    (5) stmt -> . IDENTIFIER EQUAL exp
+    (5) stmt -> . VARTYPE IDENTIFIER EQUAL exp
     (6) stmt -> . PRINT LPARAN exps RPARAN
     (9) exp -> . exp PLUS exp
     (10) exp -> . exp MINUS exp
@@ -408,22 +449,25 @@ state 13
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    IDENTIFIER      shift and go to state 5
-    PRINT           shift and go to state 6
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
+    VARTYPE         shift and go to state 5
+    PRINT           shift and go to state 7
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
     stmt                           shift and go to state 3
-    stmts                          shift and go to state 33
+    stmts                          shift and go to state 34
     exp                            shift and go to state 4
 
-state 14
+state 16
 
     (9) exp -> exp PLUS . exp
     (9) exp -> . exp PLUS exp
@@ -446,19 +490,21 @@ state 14
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 34
+    exp                            shift and go to state 35
 
-state 15
+state 17
 
     (10) exp -> exp MINUS . exp
     (9) exp -> . exp PLUS exp
@@ -481,19 +527,21 @@ state 15
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 35
+    exp                            shift and go to state 36
 
-state 16
+state 18
 
     (11) exp -> exp MULTIPLY . exp
     (9) exp -> . exp PLUS exp
@@ -516,19 +564,21 @@ state 16
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 36
+    exp                            shift and go to state 37
 
-state 17
+state 19
 
     (12) exp -> exp DIVIDE . exp
     (9) exp -> . exp PLUS exp
@@ -551,19 +601,21 @@ state 17
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 37
+    exp                            shift and go to state 38
 
-state 18
+state 20
 
     (13) exp -> exp MODULO . exp
     (9) exp -> . exp PLUS exp
@@ -586,19 +638,21 @@ state 18
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 38
+    exp                            shift and go to state 39
 
-state 19
+state 21
 
     (14) exp -> exp POWER . exp
     (9) exp -> . exp PLUS exp
@@ -621,19 +675,21 @@ state 19
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 39
+    exp                            shift and go to state 40
 
-state 20
+state 22
 
     (15) exp -> exp LE . exp
     (9) exp -> . exp PLUS exp
@@ -656,19 +712,21 @@ state 20
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 40
+    exp                            shift and go to state 41
 
-state 21
+state 23
 
     (16) exp -> exp GE . exp
     (9) exp -> . exp PLUS exp
@@ -691,19 +749,21 @@ state 21
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 41
+    exp                            shift and go to state 42
 
-state 22
+state 24
 
     (17) exp -> exp ISEQUAL . exp
     (9) exp -> . exp PLUS exp
@@ -726,19 +786,21 @@ state 22
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 42
+    exp                            shift and go to state 43
 
-state 23
+state 25
 
     (18) exp -> exp NOTEQUAL . exp
     (9) exp -> . exp PLUS exp
@@ -761,19 +823,21 @@ state 23
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 43
+    exp                            shift and go to state 44
 
-state 24
+state 26
 
     (19) exp -> exp LT . exp
     (9) exp -> . exp PLUS exp
@@ -796,19 +860,21 @@ state 24
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 44
+    exp                            shift and go to state 45
 
-state 25
+state 27
 
     (20) exp -> exp GT . exp
     (9) exp -> . exp PLUS exp
@@ -831,19 +897,21 @@ state 25
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 45
+    exp                            shift and go to state 46
 
-state 26
+state 28
 
     (21) exp -> exp AND . exp
     (9) exp -> . exp PLUS exp
@@ -866,19 +934,21 @@ state 26
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 46
+    exp                            shift and go to state 47
 
-state 27
+state 29
 
     (22) exp -> exp OR . exp
     (9) exp -> . exp PLUS exp
@@ -901,54 +971,28 @@ state 27
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
-
-    exp                            shift and go to state 47
-
-state 28
-
-    (5) stmt -> IDENTIFIER EQUAL . exp
-    (9) exp -> . exp PLUS exp
-    (10) exp -> . exp MINUS exp
-    (11) exp -> . exp MULTIPLY exp
-    (12) exp -> . exp DIVIDE exp
-    (13) exp -> . exp MODULO exp
-    (14) exp -> . exp POWER exp
-    (15) exp -> . exp LE exp
-    (16) exp -> . exp GE exp
-    (17) exp -> . exp ISEQUAL exp
-    (18) exp -> . exp NOTEQUAL exp
-    (19) exp -> . exp LT exp
-    (20) exp -> . exp GT exp
-    (21) exp -> . exp AND exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . LPARAN exp RPARAN
-    (24) exp -> . NOT exp
-    (25) exp -> . INT
-    (26) exp -> . DOUBLE
-    (27) exp -> . CHAR
-    (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
-
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
     exp                            shift and go to state 48
 
-state 29
+state 30
+
+    (5) stmt -> VARTYPE IDENTIFIER . EQUAL exp
+
+    EQUAL           shift and go to state 49
+
+
+state 31
 
     (6) stmt -> PRINT LPARAN . exps RPARAN
     (7) exps -> . exp
@@ -973,20 +1017,22 @@ state 29
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exps                           shift and go to state 49
-    exp                            shift and go to state 50
+    exps                           shift and go to state 50
+    exp                            shift and go to state 51
 
-state 30
+state 32
 
     (23) exp -> LPARAN exp . RPARAN
     (9) exp -> exp . PLUS exp
@@ -1004,48 +1050,24 @@ state 30
     (21) exp -> exp . AND exp
     (22) exp -> exp . OR exp
 
-    RPARAN          shift and go to state 51
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    MODULO          shift and go to state 18
-    POWER           shift and go to state 19
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    NOTEQUAL        shift and go to state 23
-    LT              shift and go to state 24
-    GT              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
+    RPARAN          shift and go to state 52
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    MODULO          shift and go to state 20
+    POWER           shift and go to state 21
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    NOTEQUAL        shift and go to state 25
+    LT              shift and go to state 26
+    GT              shift and go to state 27
+    AND             shift and go to state 28
+    OR              shift and go to state 29
 
 
-state 31
-
-    (29) exp -> IDENTIFIER .
-
-    RPARAN          reduce using rule 29 (exp -> IDENTIFIER .)
-    PLUS            reduce using rule 29 (exp -> IDENTIFIER .)
-    MINUS           reduce using rule 29 (exp -> IDENTIFIER .)
-    MULTIPLY        reduce using rule 29 (exp -> IDENTIFIER .)
-    DIVIDE          reduce using rule 29 (exp -> IDENTIFIER .)
-    MODULO          reduce using rule 29 (exp -> IDENTIFIER .)
-    POWER           reduce using rule 29 (exp -> IDENTIFIER .)
-    LE              reduce using rule 29 (exp -> IDENTIFIER .)
-    GE              reduce using rule 29 (exp -> IDENTIFIER .)
-    ISEQUAL         reduce using rule 29 (exp -> IDENTIFIER .)
-    NOTEQUAL        reduce using rule 29 (exp -> IDENTIFIER .)
-    LT              reduce using rule 29 (exp -> IDENTIFIER .)
-    GT              reduce using rule 29 (exp -> IDENTIFIER .)
-    AND             reduce using rule 29 (exp -> IDENTIFIER .)
-    OR              reduce using rule 29 (exp -> IDENTIFIER .)
-    SEMICOLON       reduce using rule 29 (exp -> IDENTIFIER .)
-    $end            reduce using rule 29 (exp -> IDENTIFIER .)
-    COMMA           reduce using rule 29 (exp -> IDENTIFIER .)
-
-
-state 32
+state 33
 
     (24) exp -> NOT exp .
     (9) exp -> exp . PLUS exp
@@ -1082,30 +1104,30 @@ state 32
     RPARAN          reduce using rule 24 (exp -> NOT exp .)
     COMMA           reduce using rule 24 (exp -> NOT exp .)
 
-  ! PLUS            [ shift and go to state 14 ]
-  ! MINUS           [ shift and go to state 15 ]
-  ! MULTIPLY        [ shift and go to state 16 ]
-  ! DIVIDE          [ shift and go to state 17 ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MULTIPLY        [ shift and go to state 18 ]
+  ! DIVIDE          [ shift and go to state 19 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 33
+state 34
 
     (3) stmts -> stmt SEMICOLON stmts .
 
     $end            reduce using rule 3 (stmts -> stmt SEMICOLON stmts .)
 
 
-state 34
+state 35
 
     (9) exp -> exp PLUS exp .
     (9) exp -> exp . PLUS exp
@@ -1139,26 +1161,26 @@ state 34
     $end            reduce using rule 9 (exp -> exp PLUS exp .)
     RPARAN          reduce using rule 9 (exp -> exp PLUS exp .)
     COMMA           reduce using rule 9 (exp -> exp PLUS exp .)
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
 
   ! MULTIPLY        [ reduce using rule 9 (exp -> exp PLUS exp .) ]
   ! DIVIDE          [ reduce using rule 9 (exp -> exp PLUS exp .) ]
-  ! PLUS            [ shift and go to state 14 ]
-  ! MINUS           [ shift and go to state 15 ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 35
+state 36
 
     (10) exp -> exp MINUS exp .
     (9) exp -> exp . PLUS exp
@@ -1192,26 +1214,26 @@ state 35
     $end            reduce using rule 10 (exp -> exp MINUS exp .)
     RPARAN          reduce using rule 10 (exp -> exp MINUS exp .)
     COMMA           reduce using rule 10 (exp -> exp MINUS exp .)
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
 
   ! MULTIPLY        [ reduce using rule 10 (exp -> exp MINUS exp .) ]
   ! DIVIDE          [ reduce using rule 10 (exp -> exp MINUS exp .) ]
-  ! PLUS            [ shift and go to state 14 ]
-  ! MINUS           [ shift and go to state 15 ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 36
+state 37
 
     (11) exp -> exp MULTIPLY exp .
     (9) exp -> exp . PLUS exp
@@ -1248,23 +1270,23 @@ state 36
     RPARAN          reduce using rule 11 (exp -> exp MULTIPLY exp .)
     COMMA           reduce using rule 11 (exp -> exp MULTIPLY exp .)
 
-  ! PLUS            [ shift and go to state 14 ]
-  ! MINUS           [ shift and go to state 15 ]
-  ! MULTIPLY        [ shift and go to state 16 ]
-  ! DIVIDE          [ shift and go to state 17 ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MULTIPLY        [ shift and go to state 18 ]
+  ! DIVIDE          [ shift and go to state 19 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 37
+state 38
 
     (12) exp -> exp DIVIDE exp .
     (9) exp -> exp . PLUS exp
@@ -1301,23 +1323,23 @@ state 37
     RPARAN          reduce using rule 12 (exp -> exp DIVIDE exp .)
     COMMA           reduce using rule 12 (exp -> exp DIVIDE exp .)
 
-  ! PLUS            [ shift and go to state 14 ]
-  ! MINUS           [ shift and go to state 15 ]
-  ! MULTIPLY        [ shift and go to state 16 ]
-  ! DIVIDE          [ shift and go to state 17 ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MULTIPLY        [ shift and go to state 18 ]
+  ! DIVIDE          [ shift and go to state 19 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 38
+state 39
 
     (13) exp -> exp MODULO exp .
     (9) exp -> exp . PLUS exp
@@ -1353,20 +1375,20 @@ state 38
     $end            reduce using rule 13 (exp -> exp MODULO exp .)
     RPARAN          reduce using rule 13 (exp -> exp MODULO exp .)
     COMMA           reduce using rule 13 (exp -> exp MODULO exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    MODULO          shift and go to state 18
-    POWER           shift and go to state 19
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    NOTEQUAL        shift and go to state 23
-    LT              shift and go to state 24
-    GT              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    MODULO          shift and go to state 20
+    POWER           shift and go to state 21
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    NOTEQUAL        shift and go to state 25
+    LT              shift and go to state 26
+    GT              shift and go to state 27
+    AND             shift and go to state 28
+    OR              shift and go to state 29
 
   ! PLUS            [ reduce using rule 13 (exp -> exp MODULO exp .) ]
   ! MINUS           [ reduce using rule 13 (exp -> exp MODULO exp .) ]
@@ -1384,7 +1406,7 @@ state 38
   ! OR              [ reduce using rule 13 (exp -> exp MODULO exp .) ]
 
 
-state 39
+state 40
 
     (14) exp -> exp POWER exp .
     (9) exp -> exp . PLUS exp
@@ -1420,20 +1442,20 @@ state 39
     $end            reduce using rule 14 (exp -> exp POWER exp .)
     RPARAN          reduce using rule 14 (exp -> exp POWER exp .)
     COMMA           reduce using rule 14 (exp -> exp POWER exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    MODULO          shift and go to state 18
-    POWER           shift and go to state 19
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    NOTEQUAL        shift and go to state 23
-    LT              shift and go to state 24
-    GT              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    MODULO          shift and go to state 20
+    POWER           shift and go to state 21
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    NOTEQUAL        shift and go to state 25
+    LT              shift and go to state 26
+    GT              shift and go to state 27
+    AND             shift and go to state 28
+    OR              shift and go to state 29
 
   ! PLUS            [ reduce using rule 14 (exp -> exp POWER exp .) ]
   ! MINUS           [ reduce using rule 14 (exp -> exp POWER exp .) ]
@@ -1451,7 +1473,7 @@ state 39
   ! OR              [ reduce using rule 14 (exp -> exp POWER exp .) ]
 
 
-state 40
+state 41
 
     (15) exp -> exp LE exp .
     (9) exp -> exp . PLUS exp
@@ -1483,28 +1505,28 @@ state 40
     $end            reduce using rule 15 (exp -> exp LE exp .)
     RPARAN          reduce using rule 15 (exp -> exp LE exp .)
     COMMA           reduce using rule 15 (exp -> exp LE exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
 
   ! PLUS            [ reduce using rule 15 (exp -> exp LE exp .) ]
   ! MINUS           [ reduce using rule 15 (exp -> exp LE exp .) ]
   ! MULTIPLY        [ reduce using rule 15 (exp -> exp LE exp .) ]
   ! DIVIDE          [ reduce using rule 15 (exp -> exp LE exp .) ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 41
+state 42
 
     (16) exp -> exp GE exp .
     (9) exp -> exp . PLUS exp
@@ -1536,28 +1558,28 @@ state 41
     $end            reduce using rule 16 (exp -> exp GE exp .)
     RPARAN          reduce using rule 16 (exp -> exp GE exp .)
     COMMA           reduce using rule 16 (exp -> exp GE exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
 
   ! PLUS            [ reduce using rule 16 (exp -> exp GE exp .) ]
   ! MINUS           [ reduce using rule 16 (exp -> exp GE exp .) ]
   ! MULTIPLY        [ reduce using rule 16 (exp -> exp GE exp .) ]
   ! DIVIDE          [ reduce using rule 16 (exp -> exp GE exp .) ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 42
+state 43
 
     (17) exp -> exp ISEQUAL exp .
     (9) exp -> exp . PLUS exp
@@ -1585,14 +1607,14 @@ state 42
     $end            reduce using rule 17 (exp -> exp ISEQUAL exp .)
     RPARAN          reduce using rule 17 (exp -> exp ISEQUAL exp .)
     COMMA           reduce using rule 17 (exp -> exp ISEQUAL exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    LT              shift and go to state 24
-    GT              shift and go to state 25
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    LT              shift and go to state 26
+    GT              shift and go to state 27
 
   ! PLUS            [ reduce using rule 17 (exp -> exp ISEQUAL exp .) ]
   ! MINUS           [ reduce using rule 17 (exp -> exp ISEQUAL exp .) ]
@@ -1602,15 +1624,15 @@ state 42
   ! GE              [ reduce using rule 17 (exp -> exp ISEQUAL exp .) ]
   ! LT              [ reduce using rule 17 (exp -> exp ISEQUAL exp .) ]
   ! GT              [ reduce using rule 17 (exp -> exp ISEQUAL exp .) ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 43
+state 44
 
     (18) exp -> exp NOTEQUAL exp .
     (9) exp -> exp . PLUS exp
@@ -1646,20 +1668,20 @@ state 43
     $end            reduce using rule 18 (exp -> exp NOTEQUAL exp .)
     RPARAN          reduce using rule 18 (exp -> exp NOTEQUAL exp .)
     COMMA           reduce using rule 18 (exp -> exp NOTEQUAL exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    MODULO          shift and go to state 18
-    POWER           shift and go to state 19
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    NOTEQUAL        shift and go to state 23
-    LT              shift and go to state 24
-    GT              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    MODULO          shift and go to state 20
+    POWER           shift and go to state 21
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    NOTEQUAL        shift and go to state 25
+    LT              shift and go to state 26
+    GT              shift and go to state 27
+    AND             shift and go to state 28
+    OR              shift and go to state 29
 
   ! PLUS            [ reduce using rule 18 (exp -> exp NOTEQUAL exp .) ]
   ! MINUS           [ reduce using rule 18 (exp -> exp NOTEQUAL exp .) ]
@@ -1677,7 +1699,7 @@ state 43
   ! OR              [ reduce using rule 18 (exp -> exp NOTEQUAL exp .) ]
 
 
-state 44
+state 45
 
     (19) exp -> exp LT exp .
     (9) exp -> exp . PLUS exp
@@ -1709,28 +1731,28 @@ state 44
     $end            reduce using rule 19 (exp -> exp LT exp .)
     RPARAN          reduce using rule 19 (exp -> exp LT exp .)
     COMMA           reduce using rule 19 (exp -> exp LT exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
 
   ! PLUS            [ reduce using rule 19 (exp -> exp LT exp .) ]
   ! MINUS           [ reduce using rule 19 (exp -> exp LT exp .) ]
   ! MULTIPLY        [ reduce using rule 19 (exp -> exp LT exp .) ]
   ! DIVIDE          [ reduce using rule 19 (exp -> exp LT exp .) ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 45
+state 46
 
     (20) exp -> exp GT exp .
     (9) exp -> exp . PLUS exp
@@ -1762,28 +1784,28 @@ state 45
     $end            reduce using rule 20 (exp -> exp GT exp .)
     RPARAN          reduce using rule 20 (exp -> exp GT exp .)
     COMMA           reduce using rule 20 (exp -> exp GT exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
 
   ! PLUS            [ reduce using rule 20 (exp -> exp GT exp .) ]
   ! MINUS           [ reduce using rule 20 (exp -> exp GT exp .) ]
   ! MULTIPLY        [ reduce using rule 20 (exp -> exp GT exp .) ]
   ! DIVIDE          [ reduce using rule 20 (exp -> exp GT exp .) ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! LE              [ shift and go to state 20 ]
-  ! GE              [ shift and go to state 21 ]
-  ! ISEQUAL         [ shift and go to state 22 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! LT              [ shift and go to state 24 ]
-  ! GT              [ shift and go to state 25 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 46
+state 47
 
     (21) exp -> exp AND exp .
     (9) exp -> exp . PLUS exp
@@ -1810,15 +1832,15 @@ state 46
     $end            reduce using rule 21 (exp -> exp AND exp .)
     RPARAN          reduce using rule 21 (exp -> exp AND exp .)
     COMMA           reduce using rule 21 (exp -> exp AND exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    LT              shift and go to state 24
-    GT              shift and go to state 25
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    LT              shift and go to state 26
+    GT              shift and go to state 27
 
   ! PLUS            [ reduce using rule 21 (exp -> exp AND exp .) ]
   ! MINUS           [ reduce using rule 21 (exp -> exp AND exp .) ]
@@ -1829,14 +1851,14 @@ state 46
   ! ISEQUAL         [ reduce using rule 21 (exp -> exp AND exp .) ]
   ! LT              [ reduce using rule 21 (exp -> exp AND exp .) ]
   ! GT              [ reduce using rule 21 (exp -> exp AND exp .) ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! AND             [ shift and go to state 26 ]
-  ! OR              [ shift and go to state 27 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
-state 47
+state 48
 
     (22) exp -> exp OR exp .
     (9) exp -> exp . PLUS exp
@@ -1862,16 +1884,16 @@ state 47
     $end            reduce using rule 22 (exp -> exp OR exp .)
     RPARAN          reduce using rule 22 (exp -> exp OR exp .)
     COMMA           reduce using rule 22 (exp -> exp OR exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    LT              shift and go to state 24
-    GT              shift and go to state 25
-    AND             shift and go to state 26
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    LT              shift and go to state 26
+    GT              shift and go to state 27
+    AND             shift and go to state 28
 
   ! PLUS            [ reduce using rule 22 (exp -> exp OR exp .) ]
   ! MINUS           [ reduce using rule 22 (exp -> exp OR exp .) ]
@@ -1883,56 +1905,57 @@ state 47
   ! LT              [ reduce using rule 22 (exp -> exp OR exp .) ]
   ! GT              [ reduce using rule 22 (exp -> exp OR exp .) ]
   ! AND             [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! MODULO          [ shift and go to state 18 ]
-  ! POWER           [ shift and go to state 19 ]
-  ! NOTEQUAL        [ shift and go to state 23 ]
-  ! OR              [ shift and go to state 27 ]
-
-
-state 48
-
-    (5) stmt -> IDENTIFIER EQUAL exp .
-    (9) exp -> exp . PLUS exp
-    (10) exp -> exp . MINUS exp
-    (11) exp -> exp . MULTIPLY exp
-    (12) exp -> exp . DIVIDE exp
-    (13) exp -> exp . MODULO exp
-    (14) exp -> exp . POWER exp
-    (15) exp -> exp . LE exp
-    (16) exp -> exp . GE exp
-    (17) exp -> exp . ISEQUAL exp
-    (18) exp -> exp . NOTEQUAL exp
-    (19) exp -> exp . LT exp
-    (20) exp -> exp . GT exp
-    (21) exp -> exp . AND exp
-    (22) exp -> exp . OR exp
-
-    SEMICOLON       reduce using rule 5 (stmt -> IDENTIFIER EQUAL exp .)
-    $end            reduce using rule 5 (stmt -> IDENTIFIER EQUAL exp .)
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    MODULO          shift and go to state 18
-    POWER           shift and go to state 19
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    NOTEQUAL        shift and go to state 23
-    LT              shift and go to state 24
-    GT              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! OR              [ shift and go to state 29 ]
 
 
 state 49
 
-    (6) stmt -> PRINT LPARAN exps . RPARAN
+    (5) stmt -> VARTYPE IDENTIFIER EQUAL . exp
+    (9) exp -> . exp PLUS exp
+    (10) exp -> . exp MINUS exp
+    (11) exp -> . exp MULTIPLY exp
+    (12) exp -> . exp DIVIDE exp
+    (13) exp -> . exp MODULO exp
+    (14) exp -> . exp POWER exp
+    (15) exp -> . exp LE exp
+    (16) exp -> . exp GE exp
+    (17) exp -> . exp ISEQUAL exp
+    (18) exp -> . exp NOTEQUAL exp
+    (19) exp -> . exp LT exp
+    (20) exp -> . exp GT exp
+    (21) exp -> . exp AND exp
+    (22) exp -> . exp OR exp
+    (23) exp -> . LPARAN exp RPARAN
+    (24) exp -> . NOT exp
+    (25) exp -> . INT
+    (26) exp -> . DOUBLE
+    (27) exp -> . CHAR
+    (28) exp -> . STRING
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    RPARAN          shift and go to state 52
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
+    exp                            shift and go to state 53
 
 state 50
+
+    (6) stmt -> PRINT LPARAN exps . RPARAN
+
+    RPARAN          shift and go to state 54
+
+
+state 51
 
     (7) exps -> exp .
     (8) exps -> exp . COMMA exps
@@ -1952,24 +1975,24 @@ state 50
     (22) exp -> exp . OR exp
 
     RPARAN          reduce using rule 7 (exps -> exp .)
-    COMMA           shift and go to state 53
-    PLUS            shift and go to state 14
-    MINUS           shift and go to state 15
-    MULTIPLY        shift and go to state 16
-    DIVIDE          shift and go to state 17
-    MODULO          shift and go to state 18
-    POWER           shift and go to state 19
-    LE              shift and go to state 20
-    GE              shift and go to state 21
-    ISEQUAL         shift and go to state 22
-    NOTEQUAL        shift and go to state 23
-    LT              shift and go to state 24
-    GT              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
+    COMMA           shift and go to state 55
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    MODULO          shift and go to state 20
+    POWER           shift and go to state 21
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    NOTEQUAL        shift and go to state 25
+    LT              shift and go to state 26
+    GT              shift and go to state 27
+    AND             shift and go to state 28
+    OR              shift and go to state 29
 
 
-state 51
+state 52
 
     (23) exp -> LPARAN exp RPARAN .
 
@@ -1993,7 +2016,43 @@ state 51
     COMMA           reduce using rule 23 (exp -> LPARAN exp RPARAN .)
 
 
-state 52
+state 53
+
+    (5) stmt -> VARTYPE IDENTIFIER EQUAL exp .
+    (9) exp -> exp . PLUS exp
+    (10) exp -> exp . MINUS exp
+    (11) exp -> exp . MULTIPLY exp
+    (12) exp -> exp . DIVIDE exp
+    (13) exp -> exp . MODULO exp
+    (14) exp -> exp . POWER exp
+    (15) exp -> exp . LE exp
+    (16) exp -> exp . GE exp
+    (17) exp -> exp . ISEQUAL exp
+    (18) exp -> exp . NOTEQUAL exp
+    (19) exp -> exp . LT exp
+    (20) exp -> exp . GT exp
+    (21) exp -> exp . AND exp
+    (22) exp -> exp . OR exp
+
+    SEMICOLON       reduce using rule 5 (stmt -> VARTYPE IDENTIFIER EQUAL exp .)
+    $end            reduce using rule 5 (stmt -> VARTYPE IDENTIFIER EQUAL exp .)
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MULTIPLY        shift and go to state 18
+    DIVIDE          shift and go to state 19
+    MODULO          shift and go to state 20
+    POWER           shift and go to state 21
+    LE              shift and go to state 22
+    GE              shift and go to state 23
+    ISEQUAL         shift and go to state 24
+    NOTEQUAL        shift and go to state 25
+    LT              shift and go to state 26
+    GT              shift and go to state 27
+    AND             shift and go to state 28
+    OR              shift and go to state 29
+
+
+state 54
 
     (6) stmt -> PRINT LPARAN exps RPARAN .
 
@@ -2001,7 +2060,7 @@ state 52
     $end            reduce using rule 6 (stmt -> PRINT LPARAN exps RPARAN .)
 
 
-state 53
+state 55
 
     (8) exps -> exp COMMA . exps
     (7) exps -> . exp
@@ -2026,20 +2085,22 @@ state 53
     (26) exp -> . DOUBLE
     (27) exp -> . CHAR
     (28) exp -> . STRING
-    (29) exp -> . IDENTIFIER
+    (29) exp -> . BOOL
+    (30) exp -> . IDENTIFIER
 
-    LPARAN          shift and go to state 7
-    NOT             shift and go to state 8
-    INT             shift and go to state 9
-    DOUBLE          shift and go to state 10
-    CHAR            shift and go to state 11
-    STRING          shift and go to state 12
-    IDENTIFIER      shift and go to state 31
+    LPARAN          shift and go to state 8
+    NOT             shift and go to state 9
+    INT             shift and go to state 10
+    DOUBLE          shift and go to state 11
+    CHAR            shift and go to state 12
+    STRING          shift and go to state 13
+    BOOL            shift and go to state 14
+    IDENTIFIER      shift and go to state 6
 
-    exp                            shift and go to state 50
-    exps                           shift and go to state 54
+    exp                            shift and go to state 51
+    exps                           shift and go to state 56
 
-state 54
+state 56
 
     (8) exps -> exp COMMA exps .
 
@@ -2048,20 +2109,6 @@ state 54
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PLUS in state 38 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 38 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLY in state 38 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 38 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 38 resolved as shift
-WARNING: shift/reduce conflict for POWER in state 38 resolved as shift
-WARNING: shift/reduce conflict for LE in state 38 resolved as shift
-WARNING: shift/reduce conflict for GE in state 38 resolved as shift
-WARNING: shift/reduce conflict for ISEQUAL in state 38 resolved as shift
-WARNING: shift/reduce conflict for NOTEQUAL in state 38 resolved as shift
-WARNING: shift/reduce conflict for LT in state 38 resolved as shift
-WARNING: shift/reduce conflict for GT in state 38 resolved as shift
-WARNING: shift/reduce conflict for AND in state 38 resolved as shift
-WARNING: shift/reduce conflict for OR in state 38 resolved as shift
 WARNING: shift/reduce conflict for PLUS in state 39 resolved as shift
 WARNING: shift/reduce conflict for MINUS in state 39 resolved as shift
 WARNING: shift/reduce conflict for MULTIPLY in state 39 resolved as shift
@@ -2076,17 +2123,31 @@ WARNING: shift/reduce conflict for LT in state 39 resolved as shift
 WARNING: shift/reduce conflict for GT in state 39 resolved as shift
 WARNING: shift/reduce conflict for AND in state 39 resolved as shift
 WARNING: shift/reduce conflict for OR in state 39 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 43 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 43 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLY in state 43 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 43 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 43 resolved as shift
-WARNING: shift/reduce conflict for POWER in state 43 resolved as shift
-WARNING: shift/reduce conflict for LE in state 43 resolved as shift
-WARNING: shift/reduce conflict for GE in state 43 resolved as shift
-WARNING: shift/reduce conflict for ISEQUAL in state 43 resolved as shift
-WARNING: shift/reduce conflict for NOTEQUAL in state 43 resolved as shift
-WARNING: shift/reduce conflict for LT in state 43 resolved as shift
-WARNING: shift/reduce conflict for GT in state 43 resolved as shift
-WARNING: shift/reduce conflict for AND in state 43 resolved as shift
-WARNING: shift/reduce conflict for OR in state 43 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 40 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 40 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 40 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 40 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 40 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 40 resolved as shift
+WARNING: shift/reduce conflict for LE in state 40 resolved as shift
+WARNING: shift/reduce conflict for GE in state 40 resolved as shift
+WARNING: shift/reduce conflict for ISEQUAL in state 40 resolved as shift
+WARNING: shift/reduce conflict for NOTEQUAL in state 40 resolved as shift
+WARNING: shift/reduce conflict for LT in state 40 resolved as shift
+WARNING: shift/reduce conflict for GT in state 40 resolved as shift
+WARNING: shift/reduce conflict for AND in state 40 resolved as shift
+WARNING: shift/reduce conflict for OR in state 40 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 44 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 44 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLY in state 44 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 44 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 44 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 44 resolved as shift
+WARNING: shift/reduce conflict for LE in state 44 resolved as shift
+WARNING: shift/reduce conflict for GE in state 44 resolved as shift
+WARNING: shift/reduce conflict for ISEQUAL in state 44 resolved as shift
+WARNING: shift/reduce conflict for NOTEQUAL in state 44 resolved as shift
+WARNING: shift/reduce conflict for LT in state 44 resolved as shift
+WARNING: shift/reduce conflict for GT in state 44 resolved as shift
+WARNING: shift/reduce conflict for AND in state 44 resolved as shift
+WARNING: shift/reduce conflict for OR in state 44 resolved as shift

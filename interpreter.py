@@ -10,7 +10,7 @@ import re
 mylex = lex.lex(module=lexer)
 parser = yacc.yacc()
 
-code = '''"Zuhiab"; 1 + 2; (2 * 9) / 3; z = 23; a = "shahi"; PRINT("zuhaib", 1+2, "3 times dildar"); "I am Ahmedabadi"'''
+code = ''''''
 
 ptree = parser.parse(code)
 # print(ptree)

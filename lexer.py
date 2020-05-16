@@ -4,16 +4,15 @@ import re
 t_ignore = ' \t'
 
 tokens = (
+    'VARTYPE',
     'INT',
     'DOUBLE',
     'CHAR',
     'STRING',
+    'BOOL',
     'IDENTIFIER',
     'COMMA',
     'SEMICOLON',
-    # 'BOOL',
-    # 'TRUE',
-    # 'FALSE',
     'PLUS',         #done
     'MINUS',        #done
     'DIVIDE',       #done
@@ -41,9 +40,13 @@ def t_error(t):
     print('Unrecognized token "%s"' % t.value)
     t.lexer.skip(1) 
 
-# def t_BOOL(t):
-#     r'TRUE|FALSE'
-#     return t
+def t_VARTYPE(t):
+    r'(\bINT\b)|(\bSTRING\b)|(\bCHAR\b)|(\bDOUBLE\b)|(\bBOOL\b)'
+    return t
+
+def t_BOOL(t):
+    r'(\bTRUE\b)|(\bFALSE\b)'
+    return t
 
 def t_SEMICOLON(t):
     r'\;'
@@ -88,16 +91,14 @@ def t_INT(t):
     return t
 
 def t_CHAR(t):
-    r"'[a-zA-Z]'"
+    r'"[a-zA-Z]"'
     t.value = t.value[1:-1]
     return t
 
-    
 def t_STRING(t):
     r'"[^"]*"'
     t.value = t.value[1:-1]
     return t
-
 
 def t_INCREMENT(t):
     r'\+\+'
