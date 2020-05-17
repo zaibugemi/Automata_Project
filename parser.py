@@ -374,4 +374,4 @@ def evaluate(tree, store):
                 print("AttributeError")
                 sys.exit()
             store[struct_name][struct_member] = member_val
-    elif nodetype == 'printstruct' 
+    # elif nodetype == 'printstruct' 
