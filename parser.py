@@ -10,6 +10,7 @@ precedence = (
         ('left', 'LT', 'LE', 'GT', 'GE'),
         ('left', 'PLUS', 'MINUS'),
         ('left', 'MULTIPLY', 'DIVIDE'),
+        ('left', 'POWER'),
         ('right', 'NOT'),
 )
 
@@ -220,7 +221,6 @@ def evaluate(tree, store):
                 else:
                     print('INVALID ASSIGNMENT STATEMENT')
             elif var_type == 'DOUBLE':
-                
                 if type(var_value) is float:
                     storage[var_name] = [float,var_value]
                 else:

@@ -1212,7 +1212,6 @@ state 37
     PLUS            reduce using rule 10 (exp -> exp PLUS exp .)
     MINUS           reduce using rule 10 (exp -> exp PLUS exp .)
     MODULO          reduce using rule 10 (exp -> exp PLUS exp .)
-    POWER           reduce using rule 10 (exp -> exp PLUS exp .)
     LE              reduce using rule 10 (exp -> exp PLUS exp .)
     GE              reduce using rule 10 (exp -> exp PLUS exp .)
     ISEQUAL         reduce using rule 10 (exp -> exp PLUS exp .)
@@ -1227,13 +1226,14 @@ state 37
     COMMA           reduce using rule 10 (exp -> exp PLUS exp .)
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
 
   ! MULTIPLY        [ reduce using rule 10 (exp -> exp PLUS exp .) ]
   ! DIVIDE          [ reduce using rule 10 (exp -> exp PLUS exp .) ]
+  ! POWER           [ reduce using rule 10 (exp -> exp PLUS exp .) ]
   ! PLUS            [ shift and go to state 16 ]
   ! MINUS           [ shift and go to state 17 ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! LE              [ shift and go to state 22 ]
   ! GE              [ shift and go to state 23 ]
   ! ISEQUAL         [ shift and go to state 24 ]
@@ -1265,7 +1265,6 @@ state 38
     PLUS            reduce using rule 11 (exp -> exp MINUS exp .)
     MINUS           reduce using rule 11 (exp -> exp MINUS exp .)
     MODULO          reduce using rule 11 (exp -> exp MINUS exp .)
-    POWER           reduce using rule 11 (exp -> exp MINUS exp .)
     LE              reduce using rule 11 (exp -> exp MINUS exp .)
     GE              reduce using rule 11 (exp -> exp MINUS exp .)
     ISEQUAL         reduce using rule 11 (exp -> exp MINUS exp .)
@@ -1280,13 +1279,14 @@ state 38
     COMMA           reduce using rule 11 (exp -> exp MINUS exp .)
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
 
   ! MULTIPLY        [ reduce using rule 11 (exp -> exp MINUS exp .) ]
   ! DIVIDE          [ reduce using rule 11 (exp -> exp MINUS exp .) ]
+  ! POWER           [ reduce using rule 11 (exp -> exp MINUS exp .) ]
   ! PLUS            [ shift and go to state 16 ]
   ! MINUS           [ shift and go to state 17 ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! LE              [ shift and go to state 22 ]
   ! GE              [ shift and go to state 23 ]
   ! ISEQUAL         [ shift and go to state 24 ]
@@ -1320,7 +1320,6 @@ state 39
     MULTIPLY        reduce using rule 12 (exp -> exp MULTIPLY exp .)
     DIVIDE          reduce using rule 12 (exp -> exp MULTIPLY exp .)
     MODULO          reduce using rule 12 (exp -> exp MULTIPLY exp .)
-    POWER           reduce using rule 12 (exp -> exp MULTIPLY exp .)
     LE              reduce using rule 12 (exp -> exp MULTIPLY exp .)
     GE              reduce using rule 12 (exp -> exp MULTIPLY exp .)
     ISEQUAL         reduce using rule 12 (exp -> exp MULTIPLY exp .)
@@ -1333,13 +1332,14 @@ state 39
     $end            reduce using rule 12 (exp -> exp MULTIPLY exp .)
     RPARAN          reduce using rule 12 (exp -> exp MULTIPLY exp .)
     COMMA           reduce using rule 12 (exp -> exp MULTIPLY exp .)
+    POWER           shift and go to state 21
 
+  ! POWER           [ reduce using rule 12 (exp -> exp MULTIPLY exp .) ]
   ! PLUS            [ shift and go to state 16 ]
   ! MINUS           [ shift and go to state 17 ]
   ! MULTIPLY        [ shift and go to state 18 ]
   ! DIVIDE          [ shift and go to state 19 ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! LE              [ shift and go to state 22 ]
   ! GE              [ shift and go to state 23 ]
   ! ISEQUAL         [ shift and go to state 24 ]
@@ -1373,7 +1373,6 @@ state 40
     MULTIPLY        reduce using rule 13 (exp -> exp DIVIDE exp .)
     DIVIDE          reduce using rule 13 (exp -> exp DIVIDE exp .)
     MODULO          reduce using rule 13 (exp -> exp DIVIDE exp .)
-    POWER           reduce using rule 13 (exp -> exp DIVIDE exp .)
     LE              reduce using rule 13 (exp -> exp DIVIDE exp .)
     GE              reduce using rule 13 (exp -> exp DIVIDE exp .)
     ISEQUAL         reduce using rule 13 (exp -> exp DIVIDE exp .)
@@ -1386,13 +1385,14 @@ state 40
     $end            reduce using rule 13 (exp -> exp DIVIDE exp .)
     RPARAN          reduce using rule 13 (exp -> exp DIVIDE exp .)
     COMMA           reduce using rule 13 (exp -> exp DIVIDE exp .)
+    POWER           shift and go to state 21
 
+  ! POWER           [ reduce using rule 13 (exp -> exp DIVIDE exp .) ]
   ! PLUS            [ shift and go to state 16 ]
   ! MINUS           [ shift and go to state 17 ]
   ! MULTIPLY        [ shift and go to state 18 ]
   ! DIVIDE          [ shift and go to state 19 ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! LE              [ shift and go to state 22 ]
   ! GE              [ shift and go to state 23 ]
   ! ISEQUAL         [ shift and go to state 24 ]
@@ -1488,53 +1488,39 @@ state 42
     (22) exp -> exp . AND exp
     (23) exp -> exp . OR exp
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for MULTIPLY resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MODULO resolved as shift
-  ! shift/reduce conflict for POWER resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for GE resolved as shift
-  ! shift/reduce conflict for ISEQUAL resolved as shift
-  ! shift/reduce conflict for NOTEQUAL resolved as shift
-  ! shift/reduce conflict for LT resolved as shift
-  ! shift/reduce conflict for GT resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
+    PLUS            reduce using rule 15 (exp -> exp POWER exp .)
+    MINUS           reduce using rule 15 (exp -> exp POWER exp .)
+    MULTIPLY        reduce using rule 15 (exp -> exp POWER exp .)
+    DIVIDE          reduce using rule 15 (exp -> exp POWER exp .)
+    MODULO          reduce using rule 15 (exp -> exp POWER exp .)
+    POWER           reduce using rule 15 (exp -> exp POWER exp .)
+    LE              reduce using rule 15 (exp -> exp POWER exp .)
+    GE              reduce using rule 15 (exp -> exp POWER exp .)
+    ISEQUAL         reduce using rule 15 (exp -> exp POWER exp .)
+    NOTEQUAL        reduce using rule 15 (exp -> exp POWER exp .)
+    LT              reduce using rule 15 (exp -> exp POWER exp .)
+    GT              reduce using rule 15 (exp -> exp POWER exp .)
+    AND             reduce using rule 15 (exp -> exp POWER exp .)
+    OR              reduce using rule 15 (exp -> exp POWER exp .)
     SEMICOLON       reduce using rule 15 (exp -> exp POWER exp .)
     $end            reduce using rule 15 (exp -> exp POWER exp .)
     RPARAN          reduce using rule 15 (exp -> exp POWER exp .)
     COMMA           reduce using rule 15 (exp -> exp POWER exp .)
-    PLUS            shift and go to state 16
-    MINUS           shift and go to state 17
-    MULTIPLY        shift and go to state 18
-    DIVIDE          shift and go to state 19
-    MODULO          shift and go to state 20
-    POWER           shift and go to state 21
-    LE              shift and go to state 22
-    GE              shift and go to state 23
-    ISEQUAL         shift and go to state 24
-    NOTEQUAL        shift and go to state 25
-    LT              shift and go to state 26
-    GT              shift and go to state 27
-    AND             shift and go to state 28
-    OR              shift and go to state 29
 
-  ! PLUS            [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! MINUS           [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! MULTIPLY        [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! DIVIDE          [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! MODULO          [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! POWER           [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! LE              [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! GE              [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! ISEQUAL         [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! NOTEQUAL        [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! LT              [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! GT              [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! AND             [ reduce using rule 15 (exp -> exp POWER exp .) ]
-  ! OR              [ reduce using rule 15 (exp -> exp POWER exp .) ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MULTIPLY        [ shift and go to state 18 ]
+  ! DIVIDE          [ shift and go to state 19 ]
+  ! MODULO          [ shift and go to state 20 ]
+  ! POWER           [ shift and go to state 21 ]
+  ! LE              [ shift and go to state 22 ]
+  ! GE              [ shift and go to state 23 ]
+  ! ISEQUAL         [ shift and go to state 24 ]
+  ! NOTEQUAL        [ shift and go to state 25 ]
+  ! LT              [ shift and go to state 26 ]
+  ! GT              [ shift and go to state 27 ]
+  ! AND             [ shift and go to state 28 ]
+  ! OR              [ shift and go to state 29 ]
 
 
 state 43
@@ -1556,7 +1542,6 @@ state 43
     (23) exp -> exp . OR exp
 
     MODULO          reduce using rule 16 (exp -> exp LE exp .)
-    POWER           reduce using rule 16 (exp -> exp LE exp .)
     LE              reduce using rule 16 (exp -> exp LE exp .)
     GE              reduce using rule 16 (exp -> exp LE exp .)
     ISEQUAL         reduce using rule 16 (exp -> exp LE exp .)
@@ -1573,13 +1558,14 @@ state 43
     MINUS           shift and go to state 17
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
 
   ! PLUS            [ reduce using rule 16 (exp -> exp LE exp .) ]
   ! MINUS           [ reduce using rule 16 (exp -> exp LE exp .) ]
   ! MULTIPLY        [ reduce using rule 16 (exp -> exp LE exp .) ]
   ! DIVIDE          [ reduce using rule 16 (exp -> exp LE exp .) ]
+  ! POWER           [ reduce using rule 16 (exp -> exp LE exp .) ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! LE              [ shift and go to state 22 ]
   ! GE              [ shift and go to state 23 ]
   ! ISEQUAL         [ shift and go to state 24 ]
@@ -1609,7 +1595,6 @@ state 44
     (23) exp -> exp . OR exp
 
     MODULO          reduce using rule 17 (exp -> exp GE exp .)
-    POWER           reduce using rule 17 (exp -> exp GE exp .)
     LE              reduce using rule 17 (exp -> exp GE exp .)
     GE              reduce using rule 17 (exp -> exp GE exp .)
     ISEQUAL         reduce using rule 17 (exp -> exp GE exp .)
@@ -1626,13 +1611,14 @@ state 44
     MINUS           shift and go to state 17
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
 
   ! PLUS            [ reduce using rule 17 (exp -> exp GE exp .) ]
   ! MINUS           [ reduce using rule 17 (exp -> exp GE exp .) ]
   ! MULTIPLY        [ reduce using rule 17 (exp -> exp GE exp .) ]
   ! DIVIDE          [ reduce using rule 17 (exp -> exp GE exp .) ]
+  ! POWER           [ reduce using rule 17 (exp -> exp GE exp .) ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! LE              [ shift and go to state 22 ]
   ! GE              [ shift and go to state 23 ]
   ! ISEQUAL         [ shift and go to state 24 ]
@@ -1662,7 +1648,6 @@ state 45
     (23) exp -> exp . OR exp
 
     MODULO          reduce using rule 18 (exp -> exp ISEQUAL exp .)
-    POWER           reduce using rule 18 (exp -> exp ISEQUAL exp .)
     ISEQUAL         reduce using rule 18 (exp -> exp ISEQUAL exp .)
     NOTEQUAL        reduce using rule 18 (exp -> exp ISEQUAL exp .)
     AND             reduce using rule 18 (exp -> exp ISEQUAL exp .)
@@ -1675,6 +1660,7 @@ state 45
     MINUS           shift and go to state 17
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
     LE              shift and go to state 22
     GE              shift and go to state 23
     LT              shift and go to state 26
@@ -1684,12 +1670,12 @@ state 45
   ! MINUS           [ reduce using rule 18 (exp -> exp ISEQUAL exp .) ]
   ! MULTIPLY        [ reduce using rule 18 (exp -> exp ISEQUAL exp .) ]
   ! DIVIDE          [ reduce using rule 18 (exp -> exp ISEQUAL exp .) ]
+  ! POWER           [ reduce using rule 18 (exp -> exp ISEQUAL exp .) ]
   ! LE              [ reduce using rule 18 (exp -> exp ISEQUAL exp .) ]
   ! GE              [ reduce using rule 18 (exp -> exp ISEQUAL exp .) ]
   ! LT              [ reduce using rule 18 (exp -> exp ISEQUAL exp .) ]
   ! GT              [ reduce using rule 18 (exp -> exp ISEQUAL exp .) ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! ISEQUAL         [ shift and go to state 24 ]
   ! NOTEQUAL        [ shift and go to state 25 ]
   ! AND             [ shift and go to state 28 ]
@@ -1782,7 +1768,6 @@ state 47
     (23) exp -> exp . OR exp
 
     MODULO          reduce using rule 20 (exp -> exp LT exp .)
-    POWER           reduce using rule 20 (exp -> exp LT exp .)
     LE              reduce using rule 20 (exp -> exp LT exp .)
     GE              reduce using rule 20 (exp -> exp LT exp .)
     ISEQUAL         reduce using rule 20 (exp -> exp LT exp .)
@@ -1799,13 +1784,14 @@ state 47
     MINUS           shift and go to state 17
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
 
   ! PLUS            [ reduce using rule 20 (exp -> exp LT exp .) ]
   ! MINUS           [ reduce using rule 20 (exp -> exp LT exp .) ]
   ! MULTIPLY        [ reduce using rule 20 (exp -> exp LT exp .) ]
   ! DIVIDE          [ reduce using rule 20 (exp -> exp LT exp .) ]
+  ! POWER           [ reduce using rule 20 (exp -> exp LT exp .) ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! LE              [ shift and go to state 22 ]
   ! GE              [ shift and go to state 23 ]
   ! ISEQUAL         [ shift and go to state 24 ]
@@ -1835,7 +1821,6 @@ state 48
     (23) exp -> exp . OR exp
 
     MODULO          reduce using rule 21 (exp -> exp GT exp .)
-    POWER           reduce using rule 21 (exp -> exp GT exp .)
     LE              reduce using rule 21 (exp -> exp GT exp .)
     GE              reduce using rule 21 (exp -> exp GT exp .)
     ISEQUAL         reduce using rule 21 (exp -> exp GT exp .)
@@ -1852,13 +1837,14 @@ state 48
     MINUS           shift and go to state 17
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
 
   ! PLUS            [ reduce using rule 21 (exp -> exp GT exp .) ]
   ! MINUS           [ reduce using rule 21 (exp -> exp GT exp .) ]
   ! MULTIPLY        [ reduce using rule 21 (exp -> exp GT exp .) ]
   ! DIVIDE          [ reduce using rule 21 (exp -> exp GT exp .) ]
+  ! POWER           [ reduce using rule 21 (exp -> exp GT exp .) ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! LE              [ shift and go to state 22 ]
   ! GE              [ shift and go to state 23 ]
   ! ISEQUAL         [ shift and go to state 24 ]
@@ -1888,7 +1874,6 @@ state 49
     (23) exp -> exp . OR exp
 
     MODULO          reduce using rule 22 (exp -> exp AND exp .)
-    POWER           reduce using rule 22 (exp -> exp AND exp .)
     NOTEQUAL        reduce using rule 22 (exp -> exp AND exp .)
     AND             reduce using rule 22 (exp -> exp AND exp .)
     OR              reduce using rule 22 (exp -> exp AND exp .)
@@ -1900,6 +1885,7 @@ state 49
     MINUS           shift and go to state 17
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
     LE              shift and go to state 22
     GE              shift and go to state 23
     ISEQUAL         shift and go to state 24
@@ -1910,13 +1896,13 @@ state 49
   ! MINUS           [ reduce using rule 22 (exp -> exp AND exp .) ]
   ! MULTIPLY        [ reduce using rule 22 (exp -> exp AND exp .) ]
   ! DIVIDE          [ reduce using rule 22 (exp -> exp AND exp .) ]
+  ! POWER           [ reduce using rule 22 (exp -> exp AND exp .) ]
   ! LE              [ reduce using rule 22 (exp -> exp AND exp .) ]
   ! GE              [ reduce using rule 22 (exp -> exp AND exp .) ]
   ! ISEQUAL         [ reduce using rule 22 (exp -> exp AND exp .) ]
   ! LT              [ reduce using rule 22 (exp -> exp AND exp .) ]
   ! GT              [ reduce using rule 22 (exp -> exp AND exp .) ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! NOTEQUAL        [ shift and go to state 25 ]
   ! AND             [ shift and go to state 28 ]
   ! OR              [ shift and go to state 29 ]
@@ -1941,7 +1927,6 @@ state 50
     (23) exp -> exp . OR exp
 
     MODULO          reduce using rule 23 (exp -> exp OR exp .)
-    POWER           reduce using rule 23 (exp -> exp OR exp .)
     NOTEQUAL        reduce using rule 23 (exp -> exp OR exp .)
     OR              reduce using rule 23 (exp -> exp OR exp .)
     SEMICOLON       reduce using rule 23 (exp -> exp OR exp .)
@@ -1952,6 +1937,7 @@ state 50
     MINUS           shift and go to state 17
     MULTIPLY        shift and go to state 18
     DIVIDE          shift and go to state 19
+    POWER           shift and go to state 21
     LE              shift and go to state 22
     GE              shift and go to state 23
     ISEQUAL         shift and go to state 24
@@ -1963,6 +1949,7 @@ state 50
   ! MINUS           [ reduce using rule 23 (exp -> exp OR exp .) ]
   ! MULTIPLY        [ reduce using rule 23 (exp -> exp OR exp .) ]
   ! DIVIDE          [ reduce using rule 23 (exp -> exp OR exp .) ]
+  ! POWER           [ reduce using rule 23 (exp -> exp OR exp .) ]
   ! LE              [ reduce using rule 23 (exp -> exp OR exp .) ]
   ! GE              [ reduce using rule 23 (exp -> exp OR exp .) ]
   ! ISEQUAL         [ reduce using rule 23 (exp -> exp OR exp .) ]
@@ -1970,7 +1957,6 @@ state 50
   ! GT              [ reduce using rule 23 (exp -> exp OR exp .) ]
   ! AND             [ reduce using rule 23 (exp -> exp OR exp .) ]
   ! MODULO          [ shift and go to state 20 ]
-  ! POWER           [ shift and go to state 21 ]
   ! NOTEQUAL        [ shift and go to state 25 ]
   ! OR              [ shift and go to state 29 ]
 
@@ -2223,20 +2209,6 @@ WARNING: shift/reduce conflict for LT in state 41 resolved as shift
 WARNING: shift/reduce conflict for GT in state 41 resolved as shift
 WARNING: shift/reduce conflict for AND in state 41 resolved as shift
 WARNING: shift/reduce conflict for OR in state 41 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 42 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 42 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLY in state 42 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 42 resolved as shift
-WARNING: shift/reduce conflict for MODULO in state 42 resolved as shift
-WARNING: shift/reduce conflict for POWER in state 42 resolved as shift
-WARNING: shift/reduce conflict for LE in state 42 resolved as shift
-WARNING: shift/reduce conflict for GE in state 42 resolved as shift
-WARNING: shift/reduce conflict for ISEQUAL in state 42 resolved as shift
-WARNING: shift/reduce conflict for NOTEQUAL in state 42 resolved as shift
-WARNING: shift/reduce conflict for LT in state 42 resolved as shift
-WARNING: shift/reduce conflict for GT in state 42 resolved as shift
-WARNING: shift/reduce conflict for AND in state 42 resolved as shift
-WARNING: shift/reduce conflict for OR in state 42 resolved as shift
 WARNING: shift/reduce conflict for PLUS in state 46 resolved as shift
 WARNING: shift/reduce conflict for MINUS in state 46 resolved as shift
 WARNING: shift/reduce conflict for MULTIPLY in state 46 resolved as shift
