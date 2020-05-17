@@ -10,4 +10,4 @@ PRINT(quadratic_root1);
 BOOL d = FALSE;
 PRINT(! TRUE == (! (! d)) && (TRUE != 0));
 PRINT(4 + "A");
-PRINT("Hi")
+PRINT("Hi");

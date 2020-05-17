@@ -1,0 +1,20 @@
+STRUCT BookStruct {
+ STRING title;
+ STRING author;
+ STRING subject;
+ INT book_id;
+};
+
+BookStruct Book1;
+BookStruct Book2;
+
+Book1.title = "The Theory of Computation";
+Book1.author = "Michael Sipser";
+Book1.subject = "Theory of Computation";
+Book1.book_id = 45315;
+Book2.title = "Race Against the Machine";
+Book2.author = "Andrew McAfee";
+Book2.subject = "Digital Technology";
+Book2.book_id = 92315;
+
+

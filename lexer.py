@@ -1,9 +1,14 @@
 import ply.lex as lex
 import re
 
+
 t_ignore = ' \t'
 
 tokens = (
+    'DOT',
+    'STRUCT',
+    'LBRACE',
+    'RBRACE',
     'VARTYPE',
     'INT',
     'DOUBLE',
@@ -39,6 +44,14 @@ tokens = (
 def t_error(t):
     print('Unrecognized token "%s"' % t.value)
     t.lexer.skip(1) 
+
+def t_DOT(t):
+    r'\.'
+    return t
+
+def t_STRUCT(t):
+    r'(\bSTRUCT\b)'
+    return t
 
 def t_INCREMENT(t):
     r'\+\+'
@@ -86,6 +99,14 @@ def t_LPARAN(t):
 
 def t_RPARAN(t):
     r'\)'
+    return t
+
+def t_LBRACE(t):
+    r'\{'
+    return t
+
+def t_RBRACE(t):
+    r'\}'
     return t
 
 def t_DOUBLE(t):
