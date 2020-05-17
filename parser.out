@@ -15,68 +15,69 @@ Rule 9     stmt -> exp
 Rule 10    stmt -> VARTYPE IDENTIFIER EQUAL exp
 Rule 11    stmt -> IDENTIFIER EQUAL exp
 Rule 12    stmt -> PRINT LPARAN exps RPARAN
-Rule 13    exps -> exp
-Rule 14    exps -> exp COMMA exps
-Rule 15    stmt -> IDENTIFIER INCREMENT
-Rule 16    stmt -> IDENTIFIER DECREMENT
-Rule 17    exp -> MINUS IDENTIFIER
-Rule 18    exp -> exp PLUS exp
-Rule 19    exp -> exp MINUS exp
-Rule 20    exp -> exp MULTIPLY exp
-Rule 21    exp -> exp DIVIDE exp
-Rule 22    exp -> exp MODULO exp
-Rule 23    exp -> exp POWER exp
-Rule 24    exp -> exp LE exp
-Rule 25    exp -> exp GE exp
-Rule 26    exp -> exp ISEQUAL exp
-Rule 27    exp -> exp NOTEQUAL exp
-Rule 28    exp -> exp LT exp
-Rule 29    exp -> exp GT exp
-Rule 30    exp -> exp AND exp
-Rule 31    exp -> exp OR exp
-Rule 32    exp -> LPARAN exp RPARAN
-Rule 33    exp -> NOT exp
-Rule 34    exp -> INT
-Rule 35    exp -> DOUBLE
-Rule 36    exp -> CHAR
-Rule 37    exp -> STRING
-Rule 38    exp -> BOOL
-Rule 39    exp -> IDENTIFIER
+Rule 13    stmt -> PRINT LPARAN IDENTIFIER DOT IDENTIFIER RPARAN
+Rule 14    exps -> exp
+Rule 15    exps -> exp COMMA exps
+Rule 16    stmt -> IDENTIFIER INCREMENT
+Rule 17    stmt -> IDENTIFIER DECREMENT
+Rule 18    exp -> MINUS IDENTIFIER
+Rule 19    exp -> exp PLUS exp
+Rule 20    exp -> exp MINUS exp
+Rule 21    exp -> exp MULTIPLY exp
+Rule 22    exp -> exp DIVIDE exp
+Rule 23    exp -> exp MODULO exp
+Rule 24    exp -> exp POWER exp
+Rule 25    exp -> exp LE exp
+Rule 26    exp -> exp GE exp
+Rule 27    exp -> exp ISEQUAL exp
+Rule 28    exp -> exp NOTEQUAL exp
+Rule 29    exp -> exp LT exp
+Rule 30    exp -> exp GT exp
+Rule 31    exp -> exp AND exp
+Rule 32    exp -> exp OR exp
+Rule 33    exp -> LPARAN exp RPARAN
+Rule 34    exp -> NOT exp
+Rule 35    exp -> INT
+Rule 36    exp -> DOUBLE
+Rule 37    exp -> CHAR
+Rule 38    exp -> STRING
+Rule 39    exp -> BOOL
+Rule 40    exp -> IDENTIFIER
 
 Terminals, with rules where they appear
 
-AND                  : 30
-BOOL                 : 38
-CHAR                 : 36
-COMMA                : 14
-DECREMENT            : 16
-DIVIDE               : 21
-DOT                  : 5
-DOUBLE               : 35
+AND                  : 31
+BOOL                 : 39
+CHAR                 : 37
+COMMA                : 15
+DECREMENT            : 17
+DIVIDE               : 22
+DOT                  : 5 13
+DOUBLE               : 36
 EQUAL                : 5 10 11
-GE                   : 25
-GT                   : 29
-IDENTIFIER           : 4 4 5 5 6 7 8 10 11 15 16 17 39
-INCREMENT            : 15
-INT                  : 34
-ISEQUAL              : 26
+GE                   : 26
+GT                   : 30
+IDENTIFIER           : 4 4 5 5 6 7 8 10 11 13 13 16 17 18 40
+INCREMENT            : 16
+INT                  : 35
+ISEQUAL              : 27
 LBRACE               : 6
-LE                   : 24
-LPARAN               : 12 32
-LT                   : 28
-MINUS                : 17 19
-MODULO               : 22
-MULTIPLY             : 20
-NOT                  : 33
-NOTEQUAL             : 27
-OR                   : 31
-PLUS                 : 18
-POWER                : 23
-PRINT                : 12
+LE                   : 25
+LPARAN               : 12 13 33
+LT                   : 29
+MINUS                : 18 20
+MODULO               : 23
+MULTIPLY             : 21
+NOT                  : 34
+NOTEQUAL             : 28
+OR                   : 32
+PLUS                 : 19
+POWER                : 24
+PRINT                : 12 13
 RBRACE               : 6
-RPARAN               : 12 32
+RPARAN               : 12 13 33
 SEMICOLON            : 2 3 7 8
-STRING               : 37
+STRING               : 38
 STRUCT               : 6
 VARTYPE              : 7 8 10
 error                : 
@@ -84,8 +85,8 @@ error                :
 Nonterminals, with rules where they appear
 
 assignments          : 6 8
-exp                  : 5 9 10 11 13 14 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 33
-exps                 : 12 14
+exp                  : 5 9 10 11 14 15 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 34
+exps                 : 12 15
 line                 : 0
 stmt                 : 2 3
 stmts                : 1 3
@@ -105,31 +106,32 @@ state 0
     (10) stmt -> . VARTYPE IDENTIFIER EQUAL exp
     (11) stmt -> . IDENTIFIER EQUAL exp
     (12) stmt -> . PRINT LPARAN exps RPARAN
-    (15) stmt -> . IDENTIFIER INCREMENT
-    (16) stmt -> . IDENTIFIER DECREMENT
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (13) stmt -> . PRINT LPARAN IDENTIFIER DOT IDENTIFIER RPARAN
+    (16) stmt -> . IDENTIFIER INCREMENT
+    (17) stmt -> . IDENTIFIER DECREMENT
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     IDENTIFIER      shift and go to state 4
     STRUCT          shift and go to state 6
@@ -175,49 +177,49 @@ state 4
     (4) stmt -> IDENTIFIER . IDENTIFIER
     (5) stmt -> IDENTIFIER . DOT IDENTIFIER EQUAL exp
     (11) stmt -> IDENTIFIER . EQUAL exp
-    (15) stmt -> IDENTIFIER . INCREMENT
-    (16) stmt -> IDENTIFIER . DECREMENT
-    (39) exp -> IDENTIFIER .
+    (16) stmt -> IDENTIFIER . INCREMENT
+    (17) stmt -> IDENTIFIER . DECREMENT
+    (40) exp -> IDENTIFIER .
 
     IDENTIFIER      shift and go to state 18
     DOT             shift and go to state 19
     EQUAL           shift and go to state 20
     INCREMENT       shift and go to state 21
     DECREMENT       shift and go to state 22
-    PLUS            reduce using rule 39 (exp -> IDENTIFIER .)
-    MINUS           reduce using rule 39 (exp -> IDENTIFIER .)
-    MULTIPLY        reduce using rule 39 (exp -> IDENTIFIER .)
-    DIVIDE          reduce using rule 39 (exp -> IDENTIFIER .)
-    MODULO          reduce using rule 39 (exp -> IDENTIFIER .)
-    POWER           reduce using rule 39 (exp -> IDENTIFIER .)
-    LE              reduce using rule 39 (exp -> IDENTIFIER .)
-    GE              reduce using rule 39 (exp -> IDENTIFIER .)
-    ISEQUAL         reduce using rule 39 (exp -> IDENTIFIER .)
-    NOTEQUAL        reduce using rule 39 (exp -> IDENTIFIER .)
-    LT              reduce using rule 39 (exp -> IDENTIFIER .)
-    GT              reduce using rule 39 (exp -> IDENTIFIER .)
-    AND             reduce using rule 39 (exp -> IDENTIFIER .)
-    OR              reduce using rule 39 (exp -> IDENTIFIER .)
-    SEMICOLON       reduce using rule 39 (exp -> IDENTIFIER .)
+    PLUS            reduce using rule 40 (exp -> IDENTIFIER .)
+    MINUS           reduce using rule 40 (exp -> IDENTIFIER .)
+    MULTIPLY        reduce using rule 40 (exp -> IDENTIFIER .)
+    DIVIDE          reduce using rule 40 (exp -> IDENTIFIER .)
+    MODULO          reduce using rule 40 (exp -> IDENTIFIER .)
+    POWER           reduce using rule 40 (exp -> IDENTIFIER .)
+    LE              reduce using rule 40 (exp -> IDENTIFIER .)
+    GE              reduce using rule 40 (exp -> IDENTIFIER .)
+    ISEQUAL         reduce using rule 40 (exp -> IDENTIFIER .)
+    NOTEQUAL        reduce using rule 40 (exp -> IDENTIFIER .)
+    LT              reduce using rule 40 (exp -> IDENTIFIER .)
+    GT              reduce using rule 40 (exp -> IDENTIFIER .)
+    AND             reduce using rule 40 (exp -> IDENTIFIER .)
+    OR              reduce using rule 40 (exp -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 40 (exp -> IDENTIFIER .)
 
 
 state 5
 
     (9) stmt -> exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
     SEMICOLON       reduce using rule 9 (stmt -> exp .)
     PLUS            shift and go to state 23
@@ -253,36 +255,37 @@ state 7
 state 8
 
     (12) stmt -> PRINT . LPARAN exps RPARAN
+    (13) stmt -> PRINT . LPARAN IDENTIFIER DOT IDENTIFIER RPARAN
 
     LPARAN          shift and go to state 39
 
 
 state 9
 
-    (32) exp -> LPARAN . exp RPARAN
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (33) exp -> LPARAN . exp RPARAN
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -298,37 +301,37 @@ state 9
 
 state 10
 
-    (17) exp -> MINUS . IDENTIFIER
+    (18) exp -> MINUS . IDENTIFIER
 
     IDENTIFIER      shift and go to state 42
 
 
 state 11
 
-    (33) exp -> NOT . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (34) exp -> NOT . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -344,117 +347,117 @@ state 11
 
 state 12
 
-    (34) exp -> INT .
+    (35) exp -> INT .
 
-    PLUS            reduce using rule 34 (exp -> INT .)
-    MINUS           reduce using rule 34 (exp -> INT .)
-    MULTIPLY        reduce using rule 34 (exp -> INT .)
-    DIVIDE          reduce using rule 34 (exp -> INT .)
-    MODULO          reduce using rule 34 (exp -> INT .)
-    POWER           reduce using rule 34 (exp -> INT .)
-    LE              reduce using rule 34 (exp -> INT .)
-    GE              reduce using rule 34 (exp -> INT .)
-    ISEQUAL         reduce using rule 34 (exp -> INT .)
-    NOTEQUAL        reduce using rule 34 (exp -> INT .)
-    LT              reduce using rule 34 (exp -> INT .)
-    GT              reduce using rule 34 (exp -> INT .)
-    AND             reduce using rule 34 (exp -> INT .)
-    OR              reduce using rule 34 (exp -> INT .)
-    SEMICOLON       reduce using rule 34 (exp -> INT .)
-    RPARAN          reduce using rule 34 (exp -> INT .)
-    COMMA           reduce using rule 34 (exp -> INT .)
+    PLUS            reduce using rule 35 (exp -> INT .)
+    MINUS           reduce using rule 35 (exp -> INT .)
+    MULTIPLY        reduce using rule 35 (exp -> INT .)
+    DIVIDE          reduce using rule 35 (exp -> INT .)
+    MODULO          reduce using rule 35 (exp -> INT .)
+    POWER           reduce using rule 35 (exp -> INT .)
+    LE              reduce using rule 35 (exp -> INT .)
+    GE              reduce using rule 35 (exp -> INT .)
+    ISEQUAL         reduce using rule 35 (exp -> INT .)
+    NOTEQUAL        reduce using rule 35 (exp -> INT .)
+    LT              reduce using rule 35 (exp -> INT .)
+    GT              reduce using rule 35 (exp -> INT .)
+    AND             reduce using rule 35 (exp -> INT .)
+    OR              reduce using rule 35 (exp -> INT .)
+    SEMICOLON       reduce using rule 35 (exp -> INT .)
+    RPARAN          reduce using rule 35 (exp -> INT .)
+    COMMA           reduce using rule 35 (exp -> INT .)
 
 
 state 13
 
-    (35) exp -> DOUBLE .
+    (36) exp -> DOUBLE .
 
-    PLUS            reduce using rule 35 (exp -> DOUBLE .)
-    MINUS           reduce using rule 35 (exp -> DOUBLE .)
-    MULTIPLY        reduce using rule 35 (exp -> DOUBLE .)
-    DIVIDE          reduce using rule 35 (exp -> DOUBLE .)
-    MODULO          reduce using rule 35 (exp -> DOUBLE .)
-    POWER           reduce using rule 35 (exp -> DOUBLE .)
-    LE              reduce using rule 35 (exp -> DOUBLE .)
-    GE              reduce using rule 35 (exp -> DOUBLE .)
-    ISEQUAL         reduce using rule 35 (exp -> DOUBLE .)
-    NOTEQUAL        reduce using rule 35 (exp -> DOUBLE .)
-    LT              reduce using rule 35 (exp -> DOUBLE .)
-    GT              reduce using rule 35 (exp -> DOUBLE .)
-    AND             reduce using rule 35 (exp -> DOUBLE .)
-    OR              reduce using rule 35 (exp -> DOUBLE .)
-    SEMICOLON       reduce using rule 35 (exp -> DOUBLE .)
-    RPARAN          reduce using rule 35 (exp -> DOUBLE .)
-    COMMA           reduce using rule 35 (exp -> DOUBLE .)
+    PLUS            reduce using rule 36 (exp -> DOUBLE .)
+    MINUS           reduce using rule 36 (exp -> DOUBLE .)
+    MULTIPLY        reduce using rule 36 (exp -> DOUBLE .)
+    DIVIDE          reduce using rule 36 (exp -> DOUBLE .)
+    MODULO          reduce using rule 36 (exp -> DOUBLE .)
+    POWER           reduce using rule 36 (exp -> DOUBLE .)
+    LE              reduce using rule 36 (exp -> DOUBLE .)
+    GE              reduce using rule 36 (exp -> DOUBLE .)
+    ISEQUAL         reduce using rule 36 (exp -> DOUBLE .)
+    NOTEQUAL        reduce using rule 36 (exp -> DOUBLE .)
+    LT              reduce using rule 36 (exp -> DOUBLE .)
+    GT              reduce using rule 36 (exp -> DOUBLE .)
+    AND             reduce using rule 36 (exp -> DOUBLE .)
+    OR              reduce using rule 36 (exp -> DOUBLE .)
+    SEMICOLON       reduce using rule 36 (exp -> DOUBLE .)
+    RPARAN          reduce using rule 36 (exp -> DOUBLE .)
+    COMMA           reduce using rule 36 (exp -> DOUBLE .)
 
 
 state 14
 
-    (36) exp -> CHAR .
+    (37) exp -> CHAR .
 
-    PLUS            reduce using rule 36 (exp -> CHAR .)
-    MINUS           reduce using rule 36 (exp -> CHAR .)
-    MULTIPLY        reduce using rule 36 (exp -> CHAR .)
-    DIVIDE          reduce using rule 36 (exp -> CHAR .)
-    MODULO          reduce using rule 36 (exp -> CHAR .)
-    POWER           reduce using rule 36 (exp -> CHAR .)
-    LE              reduce using rule 36 (exp -> CHAR .)
-    GE              reduce using rule 36 (exp -> CHAR .)
-    ISEQUAL         reduce using rule 36 (exp -> CHAR .)
-    NOTEQUAL        reduce using rule 36 (exp -> CHAR .)
-    LT              reduce using rule 36 (exp -> CHAR .)
-    GT              reduce using rule 36 (exp -> CHAR .)
-    AND             reduce using rule 36 (exp -> CHAR .)
-    OR              reduce using rule 36 (exp -> CHAR .)
-    SEMICOLON       reduce using rule 36 (exp -> CHAR .)
-    RPARAN          reduce using rule 36 (exp -> CHAR .)
-    COMMA           reduce using rule 36 (exp -> CHAR .)
+    PLUS            reduce using rule 37 (exp -> CHAR .)
+    MINUS           reduce using rule 37 (exp -> CHAR .)
+    MULTIPLY        reduce using rule 37 (exp -> CHAR .)
+    DIVIDE          reduce using rule 37 (exp -> CHAR .)
+    MODULO          reduce using rule 37 (exp -> CHAR .)
+    POWER           reduce using rule 37 (exp -> CHAR .)
+    LE              reduce using rule 37 (exp -> CHAR .)
+    GE              reduce using rule 37 (exp -> CHAR .)
+    ISEQUAL         reduce using rule 37 (exp -> CHAR .)
+    NOTEQUAL        reduce using rule 37 (exp -> CHAR .)
+    LT              reduce using rule 37 (exp -> CHAR .)
+    GT              reduce using rule 37 (exp -> CHAR .)
+    AND             reduce using rule 37 (exp -> CHAR .)
+    OR              reduce using rule 37 (exp -> CHAR .)
+    SEMICOLON       reduce using rule 37 (exp -> CHAR .)
+    RPARAN          reduce using rule 37 (exp -> CHAR .)
+    COMMA           reduce using rule 37 (exp -> CHAR .)
 
 
 state 15
 
-    (37) exp -> STRING .
+    (38) exp -> STRING .
 
-    PLUS            reduce using rule 37 (exp -> STRING .)
-    MINUS           reduce using rule 37 (exp -> STRING .)
-    MULTIPLY        reduce using rule 37 (exp -> STRING .)
-    DIVIDE          reduce using rule 37 (exp -> STRING .)
-    MODULO          reduce using rule 37 (exp -> STRING .)
-    POWER           reduce using rule 37 (exp -> STRING .)
-    LE              reduce using rule 37 (exp -> STRING .)
-    GE              reduce using rule 37 (exp -> STRING .)
-    ISEQUAL         reduce using rule 37 (exp -> STRING .)
-    NOTEQUAL        reduce using rule 37 (exp -> STRING .)
-    LT              reduce using rule 37 (exp -> STRING .)
-    GT              reduce using rule 37 (exp -> STRING .)
-    AND             reduce using rule 37 (exp -> STRING .)
-    OR              reduce using rule 37 (exp -> STRING .)
-    SEMICOLON       reduce using rule 37 (exp -> STRING .)
-    RPARAN          reduce using rule 37 (exp -> STRING .)
-    COMMA           reduce using rule 37 (exp -> STRING .)
+    PLUS            reduce using rule 38 (exp -> STRING .)
+    MINUS           reduce using rule 38 (exp -> STRING .)
+    MULTIPLY        reduce using rule 38 (exp -> STRING .)
+    DIVIDE          reduce using rule 38 (exp -> STRING .)
+    MODULO          reduce using rule 38 (exp -> STRING .)
+    POWER           reduce using rule 38 (exp -> STRING .)
+    LE              reduce using rule 38 (exp -> STRING .)
+    GE              reduce using rule 38 (exp -> STRING .)
+    ISEQUAL         reduce using rule 38 (exp -> STRING .)
+    NOTEQUAL        reduce using rule 38 (exp -> STRING .)
+    LT              reduce using rule 38 (exp -> STRING .)
+    GT              reduce using rule 38 (exp -> STRING .)
+    AND             reduce using rule 38 (exp -> STRING .)
+    OR              reduce using rule 38 (exp -> STRING .)
+    SEMICOLON       reduce using rule 38 (exp -> STRING .)
+    RPARAN          reduce using rule 38 (exp -> STRING .)
+    COMMA           reduce using rule 38 (exp -> STRING .)
 
 
 state 16
 
-    (38) exp -> BOOL .
+    (39) exp -> BOOL .
 
-    PLUS            reduce using rule 38 (exp -> BOOL .)
-    MINUS           reduce using rule 38 (exp -> BOOL .)
-    MULTIPLY        reduce using rule 38 (exp -> BOOL .)
-    DIVIDE          reduce using rule 38 (exp -> BOOL .)
-    MODULO          reduce using rule 38 (exp -> BOOL .)
-    POWER           reduce using rule 38 (exp -> BOOL .)
-    LE              reduce using rule 38 (exp -> BOOL .)
-    GE              reduce using rule 38 (exp -> BOOL .)
-    ISEQUAL         reduce using rule 38 (exp -> BOOL .)
-    NOTEQUAL        reduce using rule 38 (exp -> BOOL .)
-    LT              reduce using rule 38 (exp -> BOOL .)
-    GT              reduce using rule 38 (exp -> BOOL .)
-    AND             reduce using rule 38 (exp -> BOOL .)
-    OR              reduce using rule 38 (exp -> BOOL .)
-    SEMICOLON       reduce using rule 38 (exp -> BOOL .)
-    RPARAN          reduce using rule 38 (exp -> BOOL .)
-    COMMA           reduce using rule 38 (exp -> BOOL .)
+    PLUS            reduce using rule 39 (exp -> BOOL .)
+    MINUS           reduce using rule 39 (exp -> BOOL .)
+    MULTIPLY        reduce using rule 39 (exp -> BOOL .)
+    DIVIDE          reduce using rule 39 (exp -> BOOL .)
+    MODULO          reduce using rule 39 (exp -> BOOL .)
+    POWER           reduce using rule 39 (exp -> BOOL .)
+    LE              reduce using rule 39 (exp -> BOOL .)
+    GE              reduce using rule 39 (exp -> BOOL .)
+    ISEQUAL         reduce using rule 39 (exp -> BOOL .)
+    NOTEQUAL        reduce using rule 39 (exp -> BOOL .)
+    LT              reduce using rule 39 (exp -> BOOL .)
+    GT              reduce using rule 39 (exp -> BOOL .)
+    AND             reduce using rule 39 (exp -> BOOL .)
+    OR              reduce using rule 39 (exp -> BOOL .)
+    SEMICOLON       reduce using rule 39 (exp -> BOOL .)
+    RPARAN          reduce using rule 39 (exp -> BOOL .)
+    COMMA           reduce using rule 39 (exp -> BOOL .)
 
 
 state 17
@@ -470,31 +473,32 @@ state 17
     (10) stmt -> . VARTYPE IDENTIFIER EQUAL exp
     (11) stmt -> . IDENTIFIER EQUAL exp
     (12) stmt -> . PRINT LPARAN exps RPARAN
-    (15) stmt -> . IDENTIFIER INCREMENT
-    (16) stmt -> . IDENTIFIER DECREMENT
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (13) stmt -> . PRINT LPARAN IDENTIFIER DOT IDENTIFIER RPARAN
+    (16) stmt -> . IDENTIFIER INCREMENT
+    (17) stmt -> . IDENTIFIER DECREMENT
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     $end            reduce using rule 2 (stmts -> stmt SEMICOLON .)
     IDENTIFIER      shift and go to state 4
@@ -531,29 +535,29 @@ state 19
 state 20
 
     (11) stmt -> IDENTIFIER EQUAL . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -569,44 +573,44 @@ state 20
 
 state 21
 
-    (15) stmt -> IDENTIFIER INCREMENT .
+    (16) stmt -> IDENTIFIER INCREMENT .
 
-    SEMICOLON       reduce using rule 15 (stmt -> IDENTIFIER INCREMENT .)
+    SEMICOLON       reduce using rule 16 (stmt -> IDENTIFIER INCREMENT .)
 
 
 state 22
 
-    (16) stmt -> IDENTIFIER DECREMENT .
+    (17) stmt -> IDENTIFIER DECREMENT .
 
-    SEMICOLON       reduce using rule 16 (stmt -> IDENTIFIER DECREMENT .)
+    SEMICOLON       reduce using rule 17 (stmt -> IDENTIFIER DECREMENT .)
 
 
 state 23
 
-    (18) exp -> exp PLUS . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (19) exp -> exp PLUS . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -622,30 +626,30 @@ state 23
 
 state 24
 
-    (19) exp -> exp MINUS . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (20) exp -> exp MINUS . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -661,30 +665,30 @@ state 24
 
 state 25
 
-    (20) exp -> exp MULTIPLY . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (21) exp -> exp MULTIPLY . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -700,30 +704,30 @@ state 25
 
 state 26
 
-    (21) exp -> exp DIVIDE . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (22) exp -> exp DIVIDE . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -739,30 +743,30 @@ state 26
 
 state 27
 
-    (22) exp -> exp MODULO . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (23) exp -> exp MODULO . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -778,30 +782,30 @@ state 27
 
 state 28
 
-    (23) exp -> exp POWER . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (24) exp -> exp POWER . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -817,30 +821,30 @@ state 28
 
 state 29
 
-    (24) exp -> exp LE . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (25) exp -> exp LE . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -856,30 +860,30 @@ state 29
 
 state 30
 
-    (25) exp -> exp GE . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (26) exp -> exp GE . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -895,30 +899,30 @@ state 30
 
 state 31
 
-    (26) exp -> exp ISEQUAL . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (27) exp -> exp ISEQUAL . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -934,30 +938,30 @@ state 31
 
 state 32
 
-    (27) exp -> exp NOTEQUAL . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (28) exp -> exp NOTEQUAL . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -973,30 +977,30 @@ state 32
 
 state 33
 
-    (28) exp -> exp LT . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (29) exp -> exp LT . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -1012,30 +1016,30 @@ state 33
 
 state 34
 
-    (29) exp -> exp GT . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (30) exp -> exp GT . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -1051,30 +1055,30 @@ state 34
 
 state 35
 
-    (30) exp -> exp AND . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (31) exp -> exp AND . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -1090,30 +1094,30 @@ state 35
 
 state 36
 
-    (31) exp -> exp OR . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (32) exp -> exp OR . exp
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -1144,32 +1148,34 @@ state 38
 state 39
 
     (12) stmt -> PRINT LPARAN . exps RPARAN
-    (13) exps -> . exp
-    (14) exps -> . exp COMMA exps
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (13) stmt -> PRINT LPARAN . IDENTIFIER DOT IDENTIFIER RPARAN
+    (14) exps -> . exp
+    (15) exps -> . exp COMMA exps
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
+    IDENTIFIER      shift and go to state 64
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
     NOT             shift and go to state 11
@@ -1178,30 +1184,29 @@ state 39
     CHAR            shift and go to state 14
     STRING          shift and go to state 15
     BOOL            shift and go to state 16
-    IDENTIFIER      shift and go to state 41
 
     exps                           shift and go to state 63
-    exp                            shift and go to state 64
+    exp                            shift and go to state 65
 
 state 40
 
-    (32) exp -> LPARAN exp . RPARAN
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (33) exp -> LPARAN exp . RPARAN
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    RPARAN          shift and go to state 65
+    RPARAN          shift and go to state 66
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
@@ -1220,85 +1225,85 @@ state 40
 
 state 41
 
-    (39) exp -> IDENTIFIER .
+    (40) exp -> IDENTIFIER .
 
-    RPARAN          reduce using rule 39 (exp -> IDENTIFIER .)
-    PLUS            reduce using rule 39 (exp -> IDENTIFIER .)
-    MINUS           reduce using rule 39 (exp -> IDENTIFIER .)
-    MULTIPLY        reduce using rule 39 (exp -> IDENTIFIER .)
-    DIVIDE          reduce using rule 39 (exp -> IDENTIFIER .)
-    MODULO          reduce using rule 39 (exp -> IDENTIFIER .)
-    POWER           reduce using rule 39 (exp -> IDENTIFIER .)
-    LE              reduce using rule 39 (exp -> IDENTIFIER .)
-    GE              reduce using rule 39 (exp -> IDENTIFIER .)
-    ISEQUAL         reduce using rule 39 (exp -> IDENTIFIER .)
-    NOTEQUAL        reduce using rule 39 (exp -> IDENTIFIER .)
-    LT              reduce using rule 39 (exp -> IDENTIFIER .)
-    GT              reduce using rule 39 (exp -> IDENTIFIER .)
-    AND             reduce using rule 39 (exp -> IDENTIFIER .)
-    OR              reduce using rule 39 (exp -> IDENTIFIER .)
-    SEMICOLON       reduce using rule 39 (exp -> IDENTIFIER .)
-    COMMA           reduce using rule 39 (exp -> IDENTIFIER .)
+    RPARAN          reduce using rule 40 (exp -> IDENTIFIER .)
+    PLUS            reduce using rule 40 (exp -> IDENTIFIER .)
+    MINUS           reduce using rule 40 (exp -> IDENTIFIER .)
+    MULTIPLY        reduce using rule 40 (exp -> IDENTIFIER .)
+    DIVIDE          reduce using rule 40 (exp -> IDENTIFIER .)
+    MODULO          reduce using rule 40 (exp -> IDENTIFIER .)
+    POWER           reduce using rule 40 (exp -> IDENTIFIER .)
+    LE              reduce using rule 40 (exp -> IDENTIFIER .)
+    GE              reduce using rule 40 (exp -> IDENTIFIER .)
+    ISEQUAL         reduce using rule 40 (exp -> IDENTIFIER .)
+    NOTEQUAL        reduce using rule 40 (exp -> IDENTIFIER .)
+    LT              reduce using rule 40 (exp -> IDENTIFIER .)
+    GT              reduce using rule 40 (exp -> IDENTIFIER .)
+    AND             reduce using rule 40 (exp -> IDENTIFIER .)
+    OR              reduce using rule 40 (exp -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 40 (exp -> IDENTIFIER .)
+    COMMA           reduce using rule 40 (exp -> IDENTIFIER .)
 
 
 state 42
 
-    (17) exp -> MINUS IDENTIFIER .
+    (18) exp -> MINUS IDENTIFIER .
 
-    PLUS            reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    MINUS           reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    MULTIPLY        reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    DIVIDE          reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    MODULO          reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    POWER           reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    LE              reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    GE              reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    ISEQUAL         reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    NOTEQUAL        reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    LT              reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    GT              reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    AND             reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    OR              reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    SEMICOLON       reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    RPARAN          reduce using rule 17 (exp -> MINUS IDENTIFIER .)
-    COMMA           reduce using rule 17 (exp -> MINUS IDENTIFIER .)
+    PLUS            reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    MINUS           reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    MULTIPLY        reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    DIVIDE          reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    MODULO          reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    POWER           reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    LE              reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    GE              reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    ISEQUAL         reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    NOTEQUAL        reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    LT              reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    GT              reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    AND             reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    OR              reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    SEMICOLON       reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    RPARAN          reduce using rule 18 (exp -> MINUS IDENTIFIER .)
+    COMMA           reduce using rule 18 (exp -> MINUS IDENTIFIER .)
 
 
 state 43
 
-    (33) exp -> NOT exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (34) exp -> NOT exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    PLUS            reduce using rule 33 (exp -> NOT exp .)
-    MINUS           reduce using rule 33 (exp -> NOT exp .)
-    MULTIPLY        reduce using rule 33 (exp -> NOT exp .)
-    DIVIDE          reduce using rule 33 (exp -> NOT exp .)
-    MODULO          reduce using rule 33 (exp -> NOT exp .)
-    POWER           reduce using rule 33 (exp -> NOT exp .)
-    LE              reduce using rule 33 (exp -> NOT exp .)
-    GE              reduce using rule 33 (exp -> NOT exp .)
-    ISEQUAL         reduce using rule 33 (exp -> NOT exp .)
-    NOTEQUAL        reduce using rule 33 (exp -> NOT exp .)
-    LT              reduce using rule 33 (exp -> NOT exp .)
-    GT              reduce using rule 33 (exp -> NOT exp .)
-    AND             reduce using rule 33 (exp -> NOT exp .)
-    OR              reduce using rule 33 (exp -> NOT exp .)
-    SEMICOLON       reduce using rule 33 (exp -> NOT exp .)
-    RPARAN          reduce using rule 33 (exp -> NOT exp .)
-    COMMA           reduce using rule 33 (exp -> NOT exp .)
+    PLUS            reduce using rule 34 (exp -> NOT exp .)
+    MINUS           reduce using rule 34 (exp -> NOT exp .)
+    MULTIPLY        reduce using rule 34 (exp -> NOT exp .)
+    DIVIDE          reduce using rule 34 (exp -> NOT exp .)
+    MODULO          reduce using rule 34 (exp -> NOT exp .)
+    POWER           reduce using rule 34 (exp -> NOT exp .)
+    LE              reduce using rule 34 (exp -> NOT exp .)
+    GE              reduce using rule 34 (exp -> NOT exp .)
+    ISEQUAL         reduce using rule 34 (exp -> NOT exp .)
+    NOTEQUAL        reduce using rule 34 (exp -> NOT exp .)
+    LT              reduce using rule 34 (exp -> NOT exp .)
+    GT              reduce using rule 34 (exp -> NOT exp .)
+    AND             reduce using rule 34 (exp -> NOT exp .)
+    OR              reduce using rule 34 (exp -> NOT exp .)
+    SEMICOLON       reduce using rule 34 (exp -> NOT exp .)
+    RPARAN          reduce using rule 34 (exp -> NOT exp .)
+    COMMA           reduce using rule 34 (exp -> NOT exp .)
 
   ! PLUS            [ shift and go to state 23 ]
   ! MINUS           [ shift and go to state 24 ]
@@ -1327,26 +1332,26 @@ state 45
 
     (5) stmt -> IDENTIFIER DOT IDENTIFIER . EQUAL exp
 
-    EQUAL           shift and go to state 66
+    EQUAL           shift and go to state 67
 
 
 state 46
 
     (11) stmt -> IDENTIFIER EQUAL exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
     SEMICOLON       reduce using rule 11 (stmt -> IDENTIFIER EQUAL exp .)
     PLUS            shift and go to state 23
@@ -1367,43 +1372,43 @@ state 46
 
 state 47
 
-    (18) exp -> exp PLUS exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (19) exp -> exp PLUS exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    PLUS            reduce using rule 18 (exp -> exp PLUS exp .)
-    MINUS           reduce using rule 18 (exp -> exp PLUS exp .)
-    MODULO          reduce using rule 18 (exp -> exp PLUS exp .)
-    LE              reduce using rule 18 (exp -> exp PLUS exp .)
-    GE              reduce using rule 18 (exp -> exp PLUS exp .)
-    ISEQUAL         reduce using rule 18 (exp -> exp PLUS exp .)
-    NOTEQUAL        reduce using rule 18 (exp -> exp PLUS exp .)
-    LT              reduce using rule 18 (exp -> exp PLUS exp .)
-    GT              reduce using rule 18 (exp -> exp PLUS exp .)
-    AND             reduce using rule 18 (exp -> exp PLUS exp .)
-    OR              reduce using rule 18 (exp -> exp PLUS exp .)
-    SEMICOLON       reduce using rule 18 (exp -> exp PLUS exp .)
-    RPARAN          reduce using rule 18 (exp -> exp PLUS exp .)
-    COMMA           reduce using rule 18 (exp -> exp PLUS exp .)
+    PLUS            reduce using rule 19 (exp -> exp PLUS exp .)
+    MINUS           reduce using rule 19 (exp -> exp PLUS exp .)
+    MODULO          reduce using rule 19 (exp -> exp PLUS exp .)
+    LE              reduce using rule 19 (exp -> exp PLUS exp .)
+    GE              reduce using rule 19 (exp -> exp PLUS exp .)
+    ISEQUAL         reduce using rule 19 (exp -> exp PLUS exp .)
+    NOTEQUAL        reduce using rule 19 (exp -> exp PLUS exp .)
+    LT              reduce using rule 19 (exp -> exp PLUS exp .)
+    GT              reduce using rule 19 (exp -> exp PLUS exp .)
+    AND             reduce using rule 19 (exp -> exp PLUS exp .)
+    OR              reduce using rule 19 (exp -> exp PLUS exp .)
+    SEMICOLON       reduce using rule 19 (exp -> exp PLUS exp .)
+    RPARAN          reduce using rule 19 (exp -> exp PLUS exp .)
+    COMMA           reduce using rule 19 (exp -> exp PLUS exp .)
     MULTIPLY        shift and go to state 25
     DIVIDE          shift and go to state 26
     POWER           shift and go to state 28
 
-  ! MULTIPLY        [ reduce using rule 18 (exp -> exp PLUS exp .) ]
-  ! DIVIDE          [ reduce using rule 18 (exp -> exp PLUS exp .) ]
-  ! POWER           [ reduce using rule 18 (exp -> exp PLUS exp .) ]
+  ! MULTIPLY        [ reduce using rule 19 (exp -> exp PLUS exp .) ]
+  ! DIVIDE          [ reduce using rule 19 (exp -> exp PLUS exp .) ]
+  ! POWER           [ reduce using rule 19 (exp -> exp PLUS exp .) ]
   ! PLUS            [ shift and go to state 23 ]
   ! MINUS           [ shift and go to state 24 ]
   ! MODULO          [ shift and go to state 27 ]
@@ -1419,43 +1424,43 @@ state 47
 
 state 48
 
-    (19) exp -> exp MINUS exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (20) exp -> exp MINUS exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    PLUS            reduce using rule 19 (exp -> exp MINUS exp .)
-    MINUS           reduce using rule 19 (exp -> exp MINUS exp .)
-    MODULO          reduce using rule 19 (exp -> exp MINUS exp .)
-    LE              reduce using rule 19 (exp -> exp MINUS exp .)
-    GE              reduce using rule 19 (exp -> exp MINUS exp .)
-    ISEQUAL         reduce using rule 19 (exp -> exp MINUS exp .)
-    NOTEQUAL        reduce using rule 19 (exp -> exp MINUS exp .)
-    LT              reduce using rule 19 (exp -> exp MINUS exp .)
-    GT              reduce using rule 19 (exp -> exp MINUS exp .)
-    AND             reduce using rule 19 (exp -> exp MINUS exp .)
-    OR              reduce using rule 19 (exp -> exp MINUS exp .)
-    SEMICOLON       reduce using rule 19 (exp -> exp MINUS exp .)
-    RPARAN          reduce using rule 19 (exp -> exp MINUS exp .)
-    COMMA           reduce using rule 19 (exp -> exp MINUS exp .)
+    PLUS            reduce using rule 20 (exp -> exp MINUS exp .)
+    MINUS           reduce using rule 20 (exp -> exp MINUS exp .)
+    MODULO          reduce using rule 20 (exp -> exp MINUS exp .)
+    LE              reduce using rule 20 (exp -> exp MINUS exp .)
+    GE              reduce using rule 20 (exp -> exp MINUS exp .)
+    ISEQUAL         reduce using rule 20 (exp -> exp MINUS exp .)
+    NOTEQUAL        reduce using rule 20 (exp -> exp MINUS exp .)
+    LT              reduce using rule 20 (exp -> exp MINUS exp .)
+    GT              reduce using rule 20 (exp -> exp MINUS exp .)
+    AND             reduce using rule 20 (exp -> exp MINUS exp .)
+    OR              reduce using rule 20 (exp -> exp MINUS exp .)
+    SEMICOLON       reduce using rule 20 (exp -> exp MINUS exp .)
+    RPARAN          reduce using rule 20 (exp -> exp MINUS exp .)
+    COMMA           reduce using rule 20 (exp -> exp MINUS exp .)
     MULTIPLY        shift and go to state 25
     DIVIDE          shift and go to state 26
     POWER           shift and go to state 28
 
-  ! MULTIPLY        [ reduce using rule 19 (exp -> exp MINUS exp .) ]
-  ! DIVIDE          [ reduce using rule 19 (exp -> exp MINUS exp .) ]
-  ! POWER           [ reduce using rule 19 (exp -> exp MINUS exp .) ]
+  ! MULTIPLY        [ reduce using rule 20 (exp -> exp MINUS exp .) ]
+  ! DIVIDE          [ reduce using rule 20 (exp -> exp MINUS exp .) ]
+  ! POWER           [ reduce using rule 20 (exp -> exp MINUS exp .) ]
   ! PLUS            [ shift and go to state 23 ]
   ! MINUS           [ shift and go to state 24 ]
   ! MODULO          [ shift and go to state 27 ]
@@ -1471,41 +1476,41 @@ state 48
 
 state 49
 
-    (20) exp -> exp MULTIPLY exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (21) exp -> exp MULTIPLY exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    PLUS            reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    MINUS           reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    MULTIPLY        reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    DIVIDE          reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    MODULO          reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    LE              reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    GE              reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    ISEQUAL         reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    NOTEQUAL        reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    LT              reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    GT              reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    AND             reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    OR              reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    SEMICOLON       reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    RPARAN          reduce using rule 20 (exp -> exp MULTIPLY exp .)
-    COMMA           reduce using rule 20 (exp -> exp MULTIPLY exp .)
+    PLUS            reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    MINUS           reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    MULTIPLY        reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    DIVIDE          reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    MODULO          reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    LE              reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    GE              reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    ISEQUAL         reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    NOTEQUAL        reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    LT              reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    GT              reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    AND             reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    OR              reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    SEMICOLON       reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    RPARAN          reduce using rule 21 (exp -> exp MULTIPLY exp .)
+    COMMA           reduce using rule 21 (exp -> exp MULTIPLY exp .)
     POWER           shift and go to state 28
 
-  ! POWER           [ reduce using rule 20 (exp -> exp MULTIPLY exp .) ]
+  ! POWER           [ reduce using rule 21 (exp -> exp MULTIPLY exp .) ]
   ! PLUS            [ shift and go to state 23 ]
   ! MINUS           [ shift and go to state 24 ]
   ! MULTIPLY        [ shift and go to state 25 ]
@@ -1523,41 +1528,41 @@ state 49
 
 state 50
 
-    (21) exp -> exp DIVIDE exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (22) exp -> exp DIVIDE exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    PLUS            reduce using rule 21 (exp -> exp DIVIDE exp .)
-    MINUS           reduce using rule 21 (exp -> exp DIVIDE exp .)
-    MULTIPLY        reduce using rule 21 (exp -> exp DIVIDE exp .)
-    DIVIDE          reduce using rule 21 (exp -> exp DIVIDE exp .)
-    MODULO          reduce using rule 21 (exp -> exp DIVIDE exp .)
-    LE              reduce using rule 21 (exp -> exp DIVIDE exp .)
-    GE              reduce using rule 21 (exp -> exp DIVIDE exp .)
-    ISEQUAL         reduce using rule 21 (exp -> exp DIVIDE exp .)
-    NOTEQUAL        reduce using rule 21 (exp -> exp DIVIDE exp .)
-    LT              reduce using rule 21 (exp -> exp DIVIDE exp .)
-    GT              reduce using rule 21 (exp -> exp DIVIDE exp .)
-    AND             reduce using rule 21 (exp -> exp DIVIDE exp .)
-    OR              reduce using rule 21 (exp -> exp DIVIDE exp .)
-    SEMICOLON       reduce using rule 21 (exp -> exp DIVIDE exp .)
-    RPARAN          reduce using rule 21 (exp -> exp DIVIDE exp .)
-    COMMA           reduce using rule 21 (exp -> exp DIVIDE exp .)
+    PLUS            reduce using rule 22 (exp -> exp DIVIDE exp .)
+    MINUS           reduce using rule 22 (exp -> exp DIVIDE exp .)
+    MULTIPLY        reduce using rule 22 (exp -> exp DIVIDE exp .)
+    DIVIDE          reduce using rule 22 (exp -> exp DIVIDE exp .)
+    MODULO          reduce using rule 22 (exp -> exp DIVIDE exp .)
+    LE              reduce using rule 22 (exp -> exp DIVIDE exp .)
+    GE              reduce using rule 22 (exp -> exp DIVIDE exp .)
+    ISEQUAL         reduce using rule 22 (exp -> exp DIVIDE exp .)
+    NOTEQUAL        reduce using rule 22 (exp -> exp DIVIDE exp .)
+    LT              reduce using rule 22 (exp -> exp DIVIDE exp .)
+    GT              reduce using rule 22 (exp -> exp DIVIDE exp .)
+    AND             reduce using rule 22 (exp -> exp DIVIDE exp .)
+    OR              reduce using rule 22 (exp -> exp DIVIDE exp .)
+    SEMICOLON       reduce using rule 22 (exp -> exp DIVIDE exp .)
+    RPARAN          reduce using rule 22 (exp -> exp DIVIDE exp .)
+    COMMA           reduce using rule 22 (exp -> exp DIVIDE exp .)
     POWER           shift and go to state 28
 
-  ! POWER           [ reduce using rule 21 (exp -> exp DIVIDE exp .) ]
+  ! POWER           [ reduce using rule 22 (exp -> exp DIVIDE exp .) ]
   ! PLUS            [ shift and go to state 23 ]
   ! MINUS           [ shift and go to state 24 ]
   ! MULTIPLY        [ shift and go to state 25 ]
@@ -1575,21 +1580,21 @@ state 50
 
 state 51
 
-    (22) exp -> exp MODULO exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (23) exp -> exp MODULO exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1605,9 +1610,9 @@ state 51
   ! shift/reduce conflict for GT resolved as shift
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
-    SEMICOLON       reduce using rule 22 (exp -> exp MODULO exp .)
-    RPARAN          reduce using rule 22 (exp -> exp MODULO exp .)
-    COMMA           reduce using rule 22 (exp -> exp MODULO exp .)
+    SEMICOLON       reduce using rule 23 (exp -> exp MODULO exp .)
+    RPARAN          reduce using rule 23 (exp -> exp MODULO exp .)
+    COMMA           reduce using rule 23 (exp -> exp MODULO exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
@@ -1623,57 +1628,57 @@ state 51
     AND             shift and go to state 35
     OR              shift and go to state 36
 
-  ! PLUS            [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! MINUS           [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! MULTIPLY        [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! DIVIDE          [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! MODULO          [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! POWER           [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! LE              [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! GE              [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! ISEQUAL         [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! NOTEQUAL        [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! LT              [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! GT              [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! AND             [ reduce using rule 22 (exp -> exp MODULO exp .) ]
-  ! OR              [ reduce using rule 22 (exp -> exp MODULO exp .) ]
+  ! PLUS            [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! MINUS           [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! MULTIPLY        [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! DIVIDE          [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! MODULO          [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! POWER           [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! LE              [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! GE              [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! ISEQUAL         [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! NOTEQUAL        [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! LT              [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! GT              [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! AND             [ reduce using rule 23 (exp -> exp MODULO exp .) ]
+  ! OR              [ reduce using rule 23 (exp -> exp MODULO exp .) ]
 
 
 state 52
 
-    (23) exp -> exp POWER exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (24) exp -> exp POWER exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    PLUS            reduce using rule 23 (exp -> exp POWER exp .)
-    MINUS           reduce using rule 23 (exp -> exp POWER exp .)
-    MULTIPLY        reduce using rule 23 (exp -> exp POWER exp .)
-    DIVIDE          reduce using rule 23 (exp -> exp POWER exp .)
-    MODULO          reduce using rule 23 (exp -> exp POWER exp .)
-    POWER           reduce using rule 23 (exp -> exp POWER exp .)
-    LE              reduce using rule 23 (exp -> exp POWER exp .)
-    GE              reduce using rule 23 (exp -> exp POWER exp .)
-    ISEQUAL         reduce using rule 23 (exp -> exp POWER exp .)
-    NOTEQUAL        reduce using rule 23 (exp -> exp POWER exp .)
-    LT              reduce using rule 23 (exp -> exp POWER exp .)
-    GT              reduce using rule 23 (exp -> exp POWER exp .)
-    AND             reduce using rule 23 (exp -> exp POWER exp .)
-    OR              reduce using rule 23 (exp -> exp POWER exp .)
-    SEMICOLON       reduce using rule 23 (exp -> exp POWER exp .)
-    RPARAN          reduce using rule 23 (exp -> exp POWER exp .)
-    COMMA           reduce using rule 23 (exp -> exp POWER exp .)
+    PLUS            reduce using rule 24 (exp -> exp POWER exp .)
+    MINUS           reduce using rule 24 (exp -> exp POWER exp .)
+    MULTIPLY        reduce using rule 24 (exp -> exp POWER exp .)
+    DIVIDE          reduce using rule 24 (exp -> exp POWER exp .)
+    MODULO          reduce using rule 24 (exp -> exp POWER exp .)
+    POWER           reduce using rule 24 (exp -> exp POWER exp .)
+    LE              reduce using rule 24 (exp -> exp POWER exp .)
+    GE              reduce using rule 24 (exp -> exp POWER exp .)
+    ISEQUAL         reduce using rule 24 (exp -> exp POWER exp .)
+    NOTEQUAL        reduce using rule 24 (exp -> exp POWER exp .)
+    LT              reduce using rule 24 (exp -> exp POWER exp .)
+    GT              reduce using rule 24 (exp -> exp POWER exp .)
+    AND             reduce using rule 24 (exp -> exp POWER exp .)
+    OR              reduce using rule 24 (exp -> exp POWER exp .)
+    SEMICOLON       reduce using rule 24 (exp -> exp POWER exp .)
+    RPARAN          reduce using rule 24 (exp -> exp POWER exp .)
+    COMMA           reduce using rule 24 (exp -> exp POWER exp .)
 
   ! PLUS            [ shift and go to state 23 ]
   ! MINUS           [ shift and go to state 24 ]
@@ -1693,45 +1698,45 @@ state 52
 
 state 53
 
-    (24) exp -> exp LE exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (25) exp -> exp LE exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    MODULO          reduce using rule 24 (exp -> exp LE exp .)
-    LE              reduce using rule 24 (exp -> exp LE exp .)
-    GE              reduce using rule 24 (exp -> exp LE exp .)
-    ISEQUAL         reduce using rule 24 (exp -> exp LE exp .)
-    NOTEQUAL        reduce using rule 24 (exp -> exp LE exp .)
-    LT              reduce using rule 24 (exp -> exp LE exp .)
-    GT              reduce using rule 24 (exp -> exp LE exp .)
-    AND             reduce using rule 24 (exp -> exp LE exp .)
-    OR              reduce using rule 24 (exp -> exp LE exp .)
-    SEMICOLON       reduce using rule 24 (exp -> exp LE exp .)
-    RPARAN          reduce using rule 24 (exp -> exp LE exp .)
-    COMMA           reduce using rule 24 (exp -> exp LE exp .)
+    MODULO          reduce using rule 25 (exp -> exp LE exp .)
+    LE              reduce using rule 25 (exp -> exp LE exp .)
+    GE              reduce using rule 25 (exp -> exp LE exp .)
+    ISEQUAL         reduce using rule 25 (exp -> exp LE exp .)
+    NOTEQUAL        reduce using rule 25 (exp -> exp LE exp .)
+    LT              reduce using rule 25 (exp -> exp LE exp .)
+    GT              reduce using rule 25 (exp -> exp LE exp .)
+    AND             reduce using rule 25 (exp -> exp LE exp .)
+    OR              reduce using rule 25 (exp -> exp LE exp .)
+    SEMICOLON       reduce using rule 25 (exp -> exp LE exp .)
+    RPARAN          reduce using rule 25 (exp -> exp LE exp .)
+    COMMA           reduce using rule 25 (exp -> exp LE exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
     DIVIDE          shift and go to state 26
     POWER           shift and go to state 28
 
-  ! PLUS            [ reduce using rule 24 (exp -> exp LE exp .) ]
-  ! MINUS           [ reduce using rule 24 (exp -> exp LE exp .) ]
-  ! MULTIPLY        [ reduce using rule 24 (exp -> exp LE exp .) ]
-  ! DIVIDE          [ reduce using rule 24 (exp -> exp LE exp .) ]
-  ! POWER           [ reduce using rule 24 (exp -> exp LE exp .) ]
+  ! PLUS            [ reduce using rule 25 (exp -> exp LE exp .) ]
+  ! MINUS           [ reduce using rule 25 (exp -> exp LE exp .) ]
+  ! MULTIPLY        [ reduce using rule 25 (exp -> exp LE exp .) ]
+  ! DIVIDE          [ reduce using rule 25 (exp -> exp LE exp .) ]
+  ! POWER           [ reduce using rule 25 (exp -> exp LE exp .) ]
   ! MODULO          [ shift and go to state 27 ]
   ! LE              [ shift and go to state 29 ]
   ! GE              [ shift and go to state 30 ]
@@ -1745,45 +1750,45 @@ state 53
 
 state 54
 
-    (25) exp -> exp GE exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (26) exp -> exp GE exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    MODULO          reduce using rule 25 (exp -> exp GE exp .)
-    LE              reduce using rule 25 (exp -> exp GE exp .)
-    GE              reduce using rule 25 (exp -> exp GE exp .)
-    ISEQUAL         reduce using rule 25 (exp -> exp GE exp .)
-    NOTEQUAL        reduce using rule 25 (exp -> exp GE exp .)
-    LT              reduce using rule 25 (exp -> exp GE exp .)
-    GT              reduce using rule 25 (exp -> exp GE exp .)
-    AND             reduce using rule 25 (exp -> exp GE exp .)
-    OR              reduce using rule 25 (exp -> exp GE exp .)
-    SEMICOLON       reduce using rule 25 (exp -> exp GE exp .)
-    RPARAN          reduce using rule 25 (exp -> exp GE exp .)
-    COMMA           reduce using rule 25 (exp -> exp GE exp .)
+    MODULO          reduce using rule 26 (exp -> exp GE exp .)
+    LE              reduce using rule 26 (exp -> exp GE exp .)
+    GE              reduce using rule 26 (exp -> exp GE exp .)
+    ISEQUAL         reduce using rule 26 (exp -> exp GE exp .)
+    NOTEQUAL        reduce using rule 26 (exp -> exp GE exp .)
+    LT              reduce using rule 26 (exp -> exp GE exp .)
+    GT              reduce using rule 26 (exp -> exp GE exp .)
+    AND             reduce using rule 26 (exp -> exp GE exp .)
+    OR              reduce using rule 26 (exp -> exp GE exp .)
+    SEMICOLON       reduce using rule 26 (exp -> exp GE exp .)
+    RPARAN          reduce using rule 26 (exp -> exp GE exp .)
+    COMMA           reduce using rule 26 (exp -> exp GE exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
     DIVIDE          shift and go to state 26
     POWER           shift and go to state 28
 
-  ! PLUS            [ reduce using rule 25 (exp -> exp GE exp .) ]
-  ! MINUS           [ reduce using rule 25 (exp -> exp GE exp .) ]
-  ! MULTIPLY        [ reduce using rule 25 (exp -> exp GE exp .) ]
-  ! DIVIDE          [ reduce using rule 25 (exp -> exp GE exp .) ]
-  ! POWER           [ reduce using rule 25 (exp -> exp GE exp .) ]
+  ! PLUS            [ reduce using rule 26 (exp -> exp GE exp .) ]
+  ! MINUS           [ reduce using rule 26 (exp -> exp GE exp .) ]
+  ! MULTIPLY        [ reduce using rule 26 (exp -> exp GE exp .) ]
+  ! DIVIDE          [ reduce using rule 26 (exp -> exp GE exp .) ]
+  ! POWER           [ reduce using rule 26 (exp -> exp GE exp .) ]
   ! MODULO          [ shift and go to state 27 ]
   ! LE              [ shift and go to state 29 ]
   ! GE              [ shift and go to state 30 ]
@@ -1797,30 +1802,30 @@ state 54
 
 state 55
 
-    (26) exp -> exp ISEQUAL exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (27) exp -> exp ISEQUAL exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    MODULO          reduce using rule 26 (exp -> exp ISEQUAL exp .)
-    ISEQUAL         reduce using rule 26 (exp -> exp ISEQUAL exp .)
-    NOTEQUAL        reduce using rule 26 (exp -> exp ISEQUAL exp .)
-    AND             reduce using rule 26 (exp -> exp ISEQUAL exp .)
-    OR              reduce using rule 26 (exp -> exp ISEQUAL exp .)
-    SEMICOLON       reduce using rule 26 (exp -> exp ISEQUAL exp .)
-    RPARAN          reduce using rule 26 (exp -> exp ISEQUAL exp .)
-    COMMA           reduce using rule 26 (exp -> exp ISEQUAL exp .)
+    MODULO          reduce using rule 27 (exp -> exp ISEQUAL exp .)
+    ISEQUAL         reduce using rule 27 (exp -> exp ISEQUAL exp .)
+    NOTEQUAL        reduce using rule 27 (exp -> exp ISEQUAL exp .)
+    AND             reduce using rule 27 (exp -> exp ISEQUAL exp .)
+    OR              reduce using rule 27 (exp -> exp ISEQUAL exp .)
+    SEMICOLON       reduce using rule 27 (exp -> exp ISEQUAL exp .)
+    RPARAN          reduce using rule 27 (exp -> exp ISEQUAL exp .)
+    COMMA           reduce using rule 27 (exp -> exp ISEQUAL exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
@@ -1831,15 +1836,15 @@ state 55
     LT              shift and go to state 33
     GT              shift and go to state 34
 
-  ! PLUS            [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
-  ! MINUS           [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
-  ! MULTIPLY        [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
-  ! DIVIDE          [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
-  ! POWER           [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
-  ! LE              [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
-  ! GE              [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
-  ! LT              [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
-  ! GT              [ reduce using rule 26 (exp -> exp ISEQUAL exp .) ]
+  ! PLUS            [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
+  ! MINUS           [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
+  ! MULTIPLY        [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
+  ! DIVIDE          [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
+  ! POWER           [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
+  ! LE              [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
+  ! GE              [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
+  ! LT              [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
+  ! GT              [ reduce using rule 27 (exp -> exp ISEQUAL exp .) ]
   ! MODULO          [ shift and go to state 27 ]
   ! ISEQUAL         [ shift and go to state 31 ]
   ! NOTEQUAL        [ shift and go to state 32 ]
@@ -1849,21 +1854,21 @@ state 55
 
 state 56
 
-    (27) exp -> exp NOTEQUAL exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (28) exp -> exp NOTEQUAL exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for MINUS resolved as shift
@@ -1879,9 +1884,9 @@ state 56
   ! shift/reduce conflict for GT resolved as shift
   ! shift/reduce conflict for AND resolved as shift
   ! shift/reduce conflict for OR resolved as shift
-    SEMICOLON       reduce using rule 27 (exp -> exp NOTEQUAL exp .)
-    RPARAN          reduce using rule 27 (exp -> exp NOTEQUAL exp .)
-    COMMA           reduce using rule 27 (exp -> exp NOTEQUAL exp .)
+    SEMICOLON       reduce using rule 28 (exp -> exp NOTEQUAL exp .)
+    RPARAN          reduce using rule 28 (exp -> exp NOTEQUAL exp .)
+    COMMA           reduce using rule 28 (exp -> exp NOTEQUAL exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
@@ -1897,63 +1902,63 @@ state 56
     AND             shift and go to state 35
     OR              shift and go to state 36
 
-  ! PLUS            [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! MINUS           [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! MULTIPLY        [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! DIVIDE          [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! MODULO          [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! POWER           [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! LE              [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! GE              [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! ISEQUAL         [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! NOTEQUAL        [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! LT              [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! GT              [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! AND             [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
-  ! OR              [ reduce using rule 27 (exp -> exp NOTEQUAL exp .) ]
+  ! PLUS            [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! MINUS           [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! MULTIPLY        [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! DIVIDE          [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! MODULO          [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! POWER           [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! LE              [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! GE              [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! ISEQUAL         [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! NOTEQUAL        [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! LT              [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! GT              [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! AND             [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
+  ! OR              [ reduce using rule 28 (exp -> exp NOTEQUAL exp .) ]
 
 
 state 57
 
-    (28) exp -> exp LT exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (29) exp -> exp LT exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    MODULO          reduce using rule 28 (exp -> exp LT exp .)
-    LE              reduce using rule 28 (exp -> exp LT exp .)
-    GE              reduce using rule 28 (exp -> exp LT exp .)
-    ISEQUAL         reduce using rule 28 (exp -> exp LT exp .)
-    NOTEQUAL        reduce using rule 28 (exp -> exp LT exp .)
-    LT              reduce using rule 28 (exp -> exp LT exp .)
-    GT              reduce using rule 28 (exp -> exp LT exp .)
-    AND             reduce using rule 28 (exp -> exp LT exp .)
-    OR              reduce using rule 28 (exp -> exp LT exp .)
-    SEMICOLON       reduce using rule 28 (exp -> exp LT exp .)
-    RPARAN          reduce using rule 28 (exp -> exp LT exp .)
-    COMMA           reduce using rule 28 (exp -> exp LT exp .)
+    MODULO          reduce using rule 29 (exp -> exp LT exp .)
+    LE              reduce using rule 29 (exp -> exp LT exp .)
+    GE              reduce using rule 29 (exp -> exp LT exp .)
+    ISEQUAL         reduce using rule 29 (exp -> exp LT exp .)
+    NOTEQUAL        reduce using rule 29 (exp -> exp LT exp .)
+    LT              reduce using rule 29 (exp -> exp LT exp .)
+    GT              reduce using rule 29 (exp -> exp LT exp .)
+    AND             reduce using rule 29 (exp -> exp LT exp .)
+    OR              reduce using rule 29 (exp -> exp LT exp .)
+    SEMICOLON       reduce using rule 29 (exp -> exp LT exp .)
+    RPARAN          reduce using rule 29 (exp -> exp LT exp .)
+    COMMA           reduce using rule 29 (exp -> exp LT exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
     DIVIDE          shift and go to state 26
     POWER           shift and go to state 28
 
-  ! PLUS            [ reduce using rule 28 (exp -> exp LT exp .) ]
-  ! MINUS           [ reduce using rule 28 (exp -> exp LT exp .) ]
-  ! MULTIPLY        [ reduce using rule 28 (exp -> exp LT exp .) ]
-  ! DIVIDE          [ reduce using rule 28 (exp -> exp LT exp .) ]
-  ! POWER           [ reduce using rule 28 (exp -> exp LT exp .) ]
+  ! PLUS            [ reduce using rule 29 (exp -> exp LT exp .) ]
+  ! MINUS           [ reduce using rule 29 (exp -> exp LT exp .) ]
+  ! MULTIPLY        [ reduce using rule 29 (exp -> exp LT exp .) ]
+  ! DIVIDE          [ reduce using rule 29 (exp -> exp LT exp .) ]
+  ! POWER           [ reduce using rule 29 (exp -> exp LT exp .) ]
   ! MODULO          [ shift and go to state 27 ]
   ! LE              [ shift and go to state 29 ]
   ! GE              [ shift and go to state 30 ]
@@ -1967,45 +1972,45 @@ state 57
 
 state 58
 
-    (29) exp -> exp GT exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (30) exp -> exp GT exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    MODULO          reduce using rule 29 (exp -> exp GT exp .)
-    LE              reduce using rule 29 (exp -> exp GT exp .)
-    GE              reduce using rule 29 (exp -> exp GT exp .)
-    ISEQUAL         reduce using rule 29 (exp -> exp GT exp .)
-    NOTEQUAL        reduce using rule 29 (exp -> exp GT exp .)
-    LT              reduce using rule 29 (exp -> exp GT exp .)
-    GT              reduce using rule 29 (exp -> exp GT exp .)
-    AND             reduce using rule 29 (exp -> exp GT exp .)
-    OR              reduce using rule 29 (exp -> exp GT exp .)
-    SEMICOLON       reduce using rule 29 (exp -> exp GT exp .)
-    RPARAN          reduce using rule 29 (exp -> exp GT exp .)
-    COMMA           reduce using rule 29 (exp -> exp GT exp .)
+    MODULO          reduce using rule 30 (exp -> exp GT exp .)
+    LE              reduce using rule 30 (exp -> exp GT exp .)
+    GE              reduce using rule 30 (exp -> exp GT exp .)
+    ISEQUAL         reduce using rule 30 (exp -> exp GT exp .)
+    NOTEQUAL        reduce using rule 30 (exp -> exp GT exp .)
+    LT              reduce using rule 30 (exp -> exp GT exp .)
+    GT              reduce using rule 30 (exp -> exp GT exp .)
+    AND             reduce using rule 30 (exp -> exp GT exp .)
+    OR              reduce using rule 30 (exp -> exp GT exp .)
+    SEMICOLON       reduce using rule 30 (exp -> exp GT exp .)
+    RPARAN          reduce using rule 30 (exp -> exp GT exp .)
+    COMMA           reduce using rule 30 (exp -> exp GT exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
     DIVIDE          shift and go to state 26
     POWER           shift and go to state 28
 
-  ! PLUS            [ reduce using rule 29 (exp -> exp GT exp .) ]
-  ! MINUS           [ reduce using rule 29 (exp -> exp GT exp .) ]
-  ! MULTIPLY        [ reduce using rule 29 (exp -> exp GT exp .) ]
-  ! DIVIDE          [ reduce using rule 29 (exp -> exp GT exp .) ]
-  ! POWER           [ reduce using rule 29 (exp -> exp GT exp .) ]
+  ! PLUS            [ reduce using rule 30 (exp -> exp GT exp .) ]
+  ! MINUS           [ reduce using rule 30 (exp -> exp GT exp .) ]
+  ! MULTIPLY        [ reduce using rule 30 (exp -> exp GT exp .) ]
+  ! DIVIDE          [ reduce using rule 30 (exp -> exp GT exp .) ]
+  ! POWER           [ reduce using rule 30 (exp -> exp GT exp .) ]
   ! MODULO          [ shift and go to state 27 ]
   ! LE              [ shift and go to state 29 ]
   ! GE              [ shift and go to state 30 ]
@@ -2019,29 +2024,29 @@ state 58
 
 state 59
 
-    (30) exp -> exp AND exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (31) exp -> exp AND exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    MODULO          reduce using rule 30 (exp -> exp AND exp .)
-    NOTEQUAL        reduce using rule 30 (exp -> exp AND exp .)
-    AND             reduce using rule 30 (exp -> exp AND exp .)
-    OR              reduce using rule 30 (exp -> exp AND exp .)
-    SEMICOLON       reduce using rule 30 (exp -> exp AND exp .)
-    RPARAN          reduce using rule 30 (exp -> exp AND exp .)
-    COMMA           reduce using rule 30 (exp -> exp AND exp .)
+    MODULO          reduce using rule 31 (exp -> exp AND exp .)
+    NOTEQUAL        reduce using rule 31 (exp -> exp AND exp .)
+    AND             reduce using rule 31 (exp -> exp AND exp .)
+    OR              reduce using rule 31 (exp -> exp AND exp .)
+    SEMICOLON       reduce using rule 31 (exp -> exp AND exp .)
+    RPARAN          reduce using rule 31 (exp -> exp AND exp .)
+    COMMA           reduce using rule 31 (exp -> exp AND exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
@@ -2053,16 +2058,16 @@ state 59
     LT              shift and go to state 33
     GT              shift and go to state 34
 
-  ! PLUS            [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! MINUS           [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! MULTIPLY        [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! DIVIDE          [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! POWER           [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! LE              [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! GE              [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! ISEQUAL         [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! LT              [ reduce using rule 30 (exp -> exp AND exp .) ]
-  ! GT              [ reduce using rule 30 (exp -> exp AND exp .) ]
+  ! PLUS            [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! MINUS           [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! MULTIPLY        [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! DIVIDE          [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! POWER           [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! LE              [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! GE              [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! ISEQUAL         [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! LT              [ reduce using rule 31 (exp -> exp AND exp .) ]
+  ! GT              [ reduce using rule 31 (exp -> exp AND exp .) ]
   ! MODULO          [ shift and go to state 27 ]
   ! NOTEQUAL        [ shift and go to state 32 ]
   ! AND             [ shift and go to state 35 ]
@@ -2071,28 +2076,28 @@ state 59
 
 state 60
 
-    (31) exp -> exp OR exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (32) exp -> exp OR exp .
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
-    MODULO          reduce using rule 31 (exp -> exp OR exp .)
-    NOTEQUAL        reduce using rule 31 (exp -> exp OR exp .)
-    OR              reduce using rule 31 (exp -> exp OR exp .)
-    SEMICOLON       reduce using rule 31 (exp -> exp OR exp .)
-    RPARAN          reduce using rule 31 (exp -> exp OR exp .)
-    COMMA           reduce using rule 31 (exp -> exp OR exp .)
+    MODULO          reduce using rule 32 (exp -> exp OR exp .)
+    NOTEQUAL        reduce using rule 32 (exp -> exp OR exp .)
+    OR              reduce using rule 32 (exp -> exp OR exp .)
+    SEMICOLON       reduce using rule 32 (exp -> exp OR exp .)
+    RPARAN          reduce using rule 32 (exp -> exp OR exp .)
+    COMMA           reduce using rule 32 (exp -> exp OR exp .)
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
@@ -2105,17 +2110,17 @@ state 60
     GT              shift and go to state 34
     AND             shift and go to state 35
 
-  ! PLUS            [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! MINUS           [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! MULTIPLY        [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! DIVIDE          [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! POWER           [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! LE              [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! GE              [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! ISEQUAL         [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! LT              [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! GT              [ reduce using rule 31 (exp -> exp OR exp .) ]
-  ! AND             [ reduce using rule 31 (exp -> exp OR exp .) ]
+  ! PLUS            [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! MINUS           [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! MULTIPLY        [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! DIVIDE          [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! POWER           [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! LE              [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! GE              [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! ISEQUAL         [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! LT              [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! GT              [ reduce using rule 32 (exp -> exp OR exp .) ]
+  ! AND             [ reduce using rule 32 (exp -> exp OR exp .) ]
   ! MODULO          [ shift and go to state 27 ]
   ! NOTEQUAL        [ shift and go to state 32 ]
   ! OR              [ shift and go to state 36 ]
@@ -2127,36 +2132,36 @@ state 61
     (7) assignments -> . VARTYPE IDENTIFIER SEMICOLON
     (8) assignments -> . VARTYPE IDENTIFIER SEMICOLON assignments
 
-    VARTYPE         shift and go to state 68
+    VARTYPE         shift and go to state 69
 
-    assignments                    shift and go to state 67
+    assignments                    shift and go to state 68
 
 state 62
 
     (10) stmt -> VARTYPE IDENTIFIER EQUAL . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -2168,36 +2173,60 @@ state 62
     BOOL            shift and go to state 16
     IDENTIFIER      shift and go to state 41
 
-    exp                            shift and go to state 69
+    exp                            shift and go to state 70
 
 state 63
 
     (12) stmt -> PRINT LPARAN exps . RPARAN
 
-    RPARAN          shift and go to state 70
+    RPARAN          shift and go to state 71
 
 
 state 64
 
-    (13) exps -> exp .
-    (14) exps -> exp . COMMA exps
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (13) stmt -> PRINT LPARAN IDENTIFIER . DOT IDENTIFIER RPARAN
+    (40) exp -> IDENTIFIER .
 
-    RPARAN          reduce using rule 13 (exps -> exp .)
-    COMMA           shift and go to state 71
+    DOT             shift and go to state 72
+    COMMA           reduce using rule 40 (exp -> IDENTIFIER .)
+    PLUS            reduce using rule 40 (exp -> IDENTIFIER .)
+    MINUS           reduce using rule 40 (exp -> IDENTIFIER .)
+    MULTIPLY        reduce using rule 40 (exp -> IDENTIFIER .)
+    DIVIDE          reduce using rule 40 (exp -> IDENTIFIER .)
+    MODULO          reduce using rule 40 (exp -> IDENTIFIER .)
+    POWER           reduce using rule 40 (exp -> IDENTIFIER .)
+    LE              reduce using rule 40 (exp -> IDENTIFIER .)
+    GE              reduce using rule 40 (exp -> IDENTIFIER .)
+    ISEQUAL         reduce using rule 40 (exp -> IDENTIFIER .)
+    NOTEQUAL        reduce using rule 40 (exp -> IDENTIFIER .)
+    LT              reduce using rule 40 (exp -> IDENTIFIER .)
+    GT              reduce using rule 40 (exp -> IDENTIFIER .)
+    AND             reduce using rule 40 (exp -> IDENTIFIER .)
+    OR              reduce using rule 40 (exp -> IDENTIFIER .)
+    RPARAN          reduce using rule 40 (exp -> IDENTIFIER .)
+
+
+state 65
+
+    (14) exps -> exp .
+    (15) exps -> exp . COMMA exps
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
+
+    RPARAN          reduce using rule 14 (exps -> exp .)
+    COMMA           shift and go to state 73
     PLUS            shift and go to state 23
     MINUS           shift and go to state 24
     MULTIPLY        shift and go to state 25
@@ -2214,55 +2243,55 @@ state 64
     OR              shift and go to state 36
 
 
-state 65
-
-    (32) exp -> LPARAN exp RPARAN .
-
-    PLUS            reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    MINUS           reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    MULTIPLY        reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    DIVIDE          reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    MODULO          reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    POWER           reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    LE              reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    GE              reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    ISEQUAL         reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    NOTEQUAL        reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    LT              reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    GT              reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    AND             reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    OR              reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    SEMICOLON       reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    RPARAN          reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-    COMMA           reduce using rule 32 (exp -> LPARAN exp RPARAN .)
-
-
 state 66
 
+    (33) exp -> LPARAN exp RPARAN .
+
+    PLUS            reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    MINUS           reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    MULTIPLY        reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    DIVIDE          reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    MODULO          reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    POWER           reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    LE              reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    GE              reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    ISEQUAL         reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    NOTEQUAL        reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    LT              reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    GT              reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    AND             reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    OR              reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    SEMICOLON       reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    RPARAN          reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+    COMMA           reduce using rule 33 (exp -> LPARAN exp RPARAN .)
+
+
+state 67
+
     (5) stmt -> IDENTIFIER DOT IDENTIFIER EQUAL . exp
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -2274,40 +2303,40 @@ state 66
     BOOL            shift and go to state 16
     IDENTIFIER      shift and go to state 41
 
-    exp                            shift and go to state 72
-
-state 67
-
-    (6) stmt -> STRUCT IDENTIFIER LBRACE assignments . RBRACE
-
-    RBRACE          shift and go to state 73
-
+    exp                            shift and go to state 74
 
 state 68
 
-    (7) assignments -> VARTYPE . IDENTIFIER SEMICOLON
-    (8) assignments -> VARTYPE . IDENTIFIER SEMICOLON assignments
+    (6) stmt -> STRUCT IDENTIFIER LBRACE assignments . RBRACE
 
-    IDENTIFIER      shift and go to state 74
+    RBRACE          shift and go to state 75
 
 
 state 69
 
+    (7) assignments -> VARTYPE . IDENTIFIER SEMICOLON
+    (8) assignments -> VARTYPE . IDENTIFIER SEMICOLON assignments
+
+    IDENTIFIER      shift and go to state 76
+
+
+state 70
+
     (10) stmt -> VARTYPE IDENTIFIER EQUAL exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
     SEMICOLON       reduce using rule 10 (stmt -> VARTYPE IDENTIFIER EQUAL exp .)
     PLUS            shift and go to state 23
@@ -2326,41 +2355,48 @@ state 69
     OR              shift and go to state 36
 
 
-state 70
+state 71
 
     (12) stmt -> PRINT LPARAN exps RPARAN .
 
     SEMICOLON       reduce using rule 12 (stmt -> PRINT LPARAN exps RPARAN .)
 
 
-state 71
+state 72
 
-    (14) exps -> exp COMMA . exps
-    (13) exps -> . exp
-    (14) exps -> . exp COMMA exps
-    (17) exp -> . MINUS IDENTIFIER
-    (18) exp -> . exp PLUS exp
-    (19) exp -> . exp MINUS exp
-    (20) exp -> . exp MULTIPLY exp
-    (21) exp -> . exp DIVIDE exp
-    (22) exp -> . exp MODULO exp
-    (23) exp -> . exp POWER exp
-    (24) exp -> . exp LE exp
-    (25) exp -> . exp GE exp
-    (26) exp -> . exp ISEQUAL exp
-    (27) exp -> . exp NOTEQUAL exp
-    (28) exp -> . exp LT exp
-    (29) exp -> . exp GT exp
-    (30) exp -> . exp AND exp
-    (31) exp -> . exp OR exp
-    (32) exp -> . LPARAN exp RPARAN
-    (33) exp -> . NOT exp
-    (34) exp -> . INT
-    (35) exp -> . DOUBLE
-    (36) exp -> . CHAR
-    (37) exp -> . STRING
-    (38) exp -> . BOOL
-    (39) exp -> . IDENTIFIER
+    (13) stmt -> PRINT LPARAN IDENTIFIER DOT . IDENTIFIER RPARAN
+
+    IDENTIFIER      shift and go to state 77
+
+
+state 73
+
+    (15) exps -> exp COMMA . exps
+    (14) exps -> . exp
+    (15) exps -> . exp COMMA exps
+    (18) exp -> . MINUS IDENTIFIER
+    (19) exp -> . exp PLUS exp
+    (20) exp -> . exp MINUS exp
+    (21) exp -> . exp MULTIPLY exp
+    (22) exp -> . exp DIVIDE exp
+    (23) exp -> . exp MODULO exp
+    (24) exp -> . exp POWER exp
+    (25) exp -> . exp LE exp
+    (26) exp -> . exp GE exp
+    (27) exp -> . exp ISEQUAL exp
+    (28) exp -> . exp NOTEQUAL exp
+    (29) exp -> . exp LT exp
+    (30) exp -> . exp GT exp
+    (31) exp -> . exp AND exp
+    (32) exp -> . exp OR exp
+    (33) exp -> . LPARAN exp RPARAN
+    (34) exp -> . NOT exp
+    (35) exp -> . INT
+    (36) exp -> . DOUBLE
+    (37) exp -> . CHAR
+    (38) exp -> . STRING
+    (39) exp -> . BOOL
+    (40) exp -> . IDENTIFIER
 
     MINUS           shift and go to state 10
     LPARAN          shift and go to state 9
@@ -2372,26 +2408,26 @@ state 71
     BOOL            shift and go to state 16
     IDENTIFIER      shift and go to state 41
 
-    exp                            shift and go to state 64
-    exps                           shift and go to state 75
+    exp                            shift and go to state 65
+    exps                           shift and go to state 78
 
-state 72
+state 74
 
     (5) stmt -> IDENTIFIER DOT IDENTIFIER EQUAL exp .
-    (18) exp -> exp . PLUS exp
-    (19) exp -> exp . MINUS exp
-    (20) exp -> exp . MULTIPLY exp
-    (21) exp -> exp . DIVIDE exp
-    (22) exp -> exp . MODULO exp
-    (23) exp -> exp . POWER exp
-    (24) exp -> exp . LE exp
-    (25) exp -> exp . GE exp
-    (26) exp -> exp . ISEQUAL exp
-    (27) exp -> exp . NOTEQUAL exp
-    (28) exp -> exp . LT exp
-    (29) exp -> exp . GT exp
-    (30) exp -> exp . AND exp
-    (31) exp -> exp . OR exp
+    (19) exp -> exp . PLUS exp
+    (20) exp -> exp . MINUS exp
+    (21) exp -> exp . MULTIPLY exp
+    (22) exp -> exp . DIVIDE exp
+    (23) exp -> exp . MODULO exp
+    (24) exp -> exp . POWER exp
+    (25) exp -> exp . LE exp
+    (26) exp -> exp . GE exp
+    (27) exp -> exp . ISEQUAL exp
+    (28) exp -> exp . NOTEQUAL exp
+    (29) exp -> exp . LT exp
+    (30) exp -> exp . GT exp
+    (31) exp -> exp . AND exp
+    (32) exp -> exp . OR exp
 
     SEMICOLON       reduce using rule 5 (stmt -> IDENTIFIER DOT IDENTIFIER EQUAL exp .)
     PLUS            shift and go to state 23
@@ -2410,29 +2446,36 @@ state 72
     OR              shift and go to state 36
 
 
-state 73
+state 75
 
     (6) stmt -> STRUCT IDENTIFIER LBRACE assignments RBRACE .
 
     SEMICOLON       reduce using rule 6 (stmt -> STRUCT IDENTIFIER LBRACE assignments RBRACE .)
 
 
-state 74
+state 76
 
     (7) assignments -> VARTYPE IDENTIFIER . SEMICOLON
     (8) assignments -> VARTYPE IDENTIFIER . SEMICOLON assignments
 
-    SEMICOLON       shift and go to state 76
+    SEMICOLON       shift and go to state 79
 
 
-state 75
+state 77
 
-    (14) exps -> exp COMMA exps .
+    (13) stmt -> PRINT LPARAN IDENTIFIER DOT IDENTIFIER . RPARAN
 
-    RPARAN          reduce using rule 14 (exps -> exp COMMA exps .)
+    RPARAN          shift and go to state 80
 
 
-state 76
+state 78
+
+    (15) exps -> exp COMMA exps .
+
+    RPARAN          reduce using rule 15 (exps -> exp COMMA exps .)
+
+
+state 79
 
     (7) assignments -> VARTYPE IDENTIFIER SEMICOLON .
     (8) assignments -> VARTYPE IDENTIFIER SEMICOLON . assignments
@@ -2440,11 +2483,18 @@ state 76
     (8) assignments -> . VARTYPE IDENTIFIER SEMICOLON assignments
 
     RBRACE          reduce using rule 7 (assignments -> VARTYPE IDENTIFIER SEMICOLON .)
-    VARTYPE         shift and go to state 68
+    VARTYPE         shift and go to state 69
 
-    assignments                    shift and go to state 77
+    assignments                    shift and go to state 81
 
-state 77
+state 80
+
+    (13) stmt -> PRINT LPARAN IDENTIFIER DOT IDENTIFIER RPARAN .
+
+    SEMICOLON       reduce using rule 13 (stmt -> PRINT LPARAN IDENTIFIER DOT IDENTIFIER RPARAN .)
+
+
+state 81
 
     (8) assignments -> VARTYPE IDENTIFIER SEMICOLON assignments .
 

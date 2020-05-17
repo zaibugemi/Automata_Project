@@ -367,11 +367,23 @@ def evaluate(tree, store):
         struct_member = tree[2]
         member_val = evaluate(tree[3],store)
         if struct_name not in storage:
-            print('variable "{}" does not exist'.format(var_name))
+            print('variable "{}" does not exist'.format(struct_name))
             sys.exit()
         else:
             if struct_member not in store[struct_name]:
                 print("AttributeError")
                 sys.exit()
             store[struct_name][struct_member] = member_val
-    # elif nodetype == 'printstruct' 
+    elif nodetype == 'printstruct':
+        struct_name = tree[1]
+        member_name = tree[2]
+        if struct_name not in storage:
+            print('variable "{}" does not exist'.format(struct_name))
+            sys.exit()
+        else:
+            if member_name not in store[struct_name]:
+                print("AttributeError")
+                sys.exit()
+            print(store[struct_name][member_name])
+
+

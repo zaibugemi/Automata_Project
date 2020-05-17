@@ -17,4 +17,15 @@ Book2.author = "Andrew McAfee";
 Book2.subject = "Digital Technology";
 Book2.book_id = 92315;
 
+PRINT(Book1.title);
+PRINT(Book1.author);
+PRINT(Book1.subject);
+PRINT(Book1.book_id);
+PRINT("");
+PRINT(Book2.title);
+PRINT(Book2.author);
+PRINT(Book2.subject);
+PRINT(Book2.book_id);
+PRINT(Book2.publisher);
+
 
