@@ -47,7 +47,7 @@ def t_INCREMENT(t):
 def t_DECREMENT(t):
     r'\-\-'
     return t
-    
+
 def t_VARTYPE(t):
     r'(\bINT\b)|(\bSTRING\b)|(\bCHAR\b)|(\bDOUBLE\b)|(\bBOOL\b)'
     return t
@@ -106,14 +106,6 @@ def t_CHAR(t):
 def t_STRING(t):
     r'"[^"]*"'
     t.value = t.value[1:-1]
-    return t
-
-def t_INCREMENT(t):
-    r'\+\+'
-    return t
-
-def t_DECREMENT(t):
-    r'\-\-'
     return t
 
 def t_PLUS(t):

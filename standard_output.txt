@@ -1,6 +1,13 @@
+STRING mystring = ("theory" + " of ") + "automata";
 INT a = 1;
-INT b = 5;
+INT b = 4;
+b++;
+PRINT(mystring);
 DOUBLE c = (1.5+0.5+2);
-DOUBLE determinant = 5 ^ 2 - 4 * a * c;
-DOUBLE quadratic_root1 = (-5 + determinant^(1/2)) / ( 2.0*a );
-PRINT(quadratic_root1)
+DOUBLE determinant = b ^ 2 - 4 * a * c;
+DOUBLE quadratic_root1 = (-b + determinant^(1/2)) / ( 2.0*a );
+PRINT(quadratic_root1);
+BOOL d = FALSE;
+PRINT(! TRUE == (! (! d)) && (TRUE != 0));
+PRINT(4 + "A");
+PRINT("Hi")

@@ -86,6 +86,18 @@ def p_stmt_many_exps(p):
     else: 
         p[0] = [p[1]] + p[3]
 
+def p_stmt_increment(p):
+    '''stmt : IDENTIFIER INCREMENT'''
+    p[0] = ('increment', p[1])
+
+def p_stmt_decrement(p):
+    '''stmt : IDENTIFIER DECREMENT'''
+    p[0] = ('decrement', p[1])
+
+def p_exp_neg_number(p):
+    '''exp : MINUS IDENTIFIER'''
+    p[0] = ('negate', p[2])
+
 def p_exp_binop(p):
     '''
     exp : exp PLUS exp
@@ -208,30 +220,29 @@ def evaluate(tree, store):
                 if type(var_value) is str:
                     storage[var_name] = [str,var_value]
                 else:
-                    print('INVALID ASSIGNMENT STATEMENT')
+                    print('Invalid assignment')
             elif var_type == 'INT':
                 if type(var_value) is int:
-                    # print(var_value)
                     storage[var_name] = [int,var_value]
                 else:
-                    print('INVALID ASSIGNMENT STATEMENT')
+                    print('Invalid assignment')
             elif var_type == 'CHAR':
                 if type(var_value) is str and len(var_name) == 1:
                     storage[var_name] = [str,var_value]
                 else:
-                    print('INVALID ASSIGNMENT STATEMENT')
+                    print('Invalid assignment')
             elif var_type == 'DOUBLE':
                 if type(var_value) is float:
                     storage[var_name] = [float,var_value]
                 else:
-                    print('INVALID ASSIGNMENT STATEMENT')
+                    print('Invalid assignment')
             elif var_type == 'BOOL':
                 if var_value == 'TRUE':
                     storage[var_name] = [bool,True]
                 elif var_value == 'FALSE':
                     storage[var_name] = [bool,False]
                 else:
-                    print('INVALID ASSIGNMENT STATEMENT')
+                    print('Invalid assignment')
     elif nodetype == 'printexps':
         exp_list = tree[1]
         for exp in exp_list:
@@ -247,7 +258,7 @@ def evaluate(tree, store):
         var_name = tree[1]
         var_val = tree[2]
         if var_name not in storage:
-            print("variable does not exixt")
+            print('variable "{}" does not exixt'.format(var_name))
         else:
             var_type = type(tree[2][1])
             if storage[var_name][0] == var_type:
@@ -255,3 +266,23 @@ def evaluate(tree, store):
             else:
                 print(var_val)
                 print("types do not match")
+    elif nodetype == 'increment':
+        var_name = tree[1]
+        if var_name in storage and type(storage[var_name][1]) is int:
+            storage[var_name][1] = storage[var_name][1] + 1
+        else:
+            print('variable "{}" does not exixt'.format(var_name))
+    elif nodetype == 'decrement':
+        var_name = tree[1]
+        if var_name in storage and type(storage[var_name][1]) is int:
+            storage[var_name][1] = storage[var_name][1] - 1
+        else:
+            print('variable does not exixt')
+    elif nodetype == 'negate':
+        var_name = tree[1]
+        if var_name not in storage:
+            print('variable "{}" does not exixt'.format(var_name))
+        else:
+            if type(storage[var_name][1]) is float or type(storage[var_name][1]) is int:
+                return -storage[var_name][1]
+    
