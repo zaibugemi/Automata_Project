@@ -1,0 +1,11 @@
+STRING a = "start";
+INT b = 1;
+DOUBLE c = 2.5;
+BOOL d = FALSE;
+INT e = 0;
+STRING f = "end";
+PRINT(a);
+PRINT(b,c);
+PRINT(d,e);
+PRINT(f);
+INT e = 5;
