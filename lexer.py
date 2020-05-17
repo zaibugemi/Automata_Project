@@ -40,6 +40,14 @@ def t_error(t):
     print('Unrecognized token "%s"' % t.value)
     t.lexer.skip(1) 
 
+def t_INCREMENT(t):
+    r'\+\+'
+    return t
+
+def t_DECREMENT(t):
+    r'\-\-'
+    return t
+    
 def t_VARTYPE(t):
     r'(\bINT\b)|(\bSTRING\b)|(\bCHAR\b)|(\bDOUBLE\b)|(\bBOOL\b)'
     return t

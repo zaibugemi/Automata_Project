@@ -1,0 +1,6 @@
+INT a = 1;
+INT b = 5;
+DOUBLE c = (1.5+0.5+2);
+DOUBLE determinant = 5 ^ 2 - 4 * a * c;
+DOUBLE quadratic_root1 = (-5 + determinant^(1/2)) / ( 2.0*a );
+PRINT(quadratic_root1)
